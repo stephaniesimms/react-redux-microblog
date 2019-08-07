@@ -8,7 +8,7 @@ class PostForm extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+    this.state = { 
       title: '',
       description: '',
       body: ''
@@ -16,6 +16,18 @@ class PostForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if(this.props.post) {
+      const { title, description, body } = this.props.post;
+
+      this.setState({
+        title,
+        description,
+        body
+      });
+    }
   }
 
   handleChange(evt) {
@@ -26,19 +38,25 @@ class PostForm extends Component {
 
   async handleSubmit(evt) {
     evt.preventDefault();
-
-    this.props.addPost({ ...this.state, id: uuid() });
-    this.setState({
-      title: '',
-      description: '',
-      body: ''
-    });
-    this.props.history.push('/');
+    // console.log(this.props)
+    if (this.props.formType === "Edit") {
+      this.props.updatePost({...this.state });
+    } else {
+      this.props.addPost({ ...this.state, id: uuid() });
+      this.setState({
+        title: '',
+        description: '',
+        body: ''
+      });
+      this.props.history.push('/');
+    }
   };
 
   render() {
+    // console.log("this.props in postform render", this.props)
     return (
       <div style={{ border: "2px solid rgba(0,0,0,.125)", borderRadius: "10px", padding: "10px", overflow: "auto" }}>
+        <h1>{this.props.formType}</h1>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Title</Form.Label>

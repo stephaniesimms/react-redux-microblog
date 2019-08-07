@@ -18,6 +18,7 @@ class App extends Component {
     };
     this.addPost = this.addPost.bind(this);
     this.deletePost = this.deletePost.bind(this);
+    this.updatePost = this.updatePost.bind(this);
   }
 
   addPost(newPost) {
@@ -34,13 +35,24 @@ class App extends Component {
     });
   }
 
+  updatePost(newPost, id) {
+    console.log(newPost, id)
+    const postsCopy = {...this.state.posts};
+    postsCopy[id] = newPost;
+    this.setState({
+      posts: postsCopy
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Nav />
         <Routes posts={this.state.posts} 
           deletePost={this.deletePost}
-          addPost={this.addPost} />
+          addPost={this.addPost}
+          updatePost={this.updatePost}
+          />
       </div>
     );
   }
