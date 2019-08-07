@@ -4,7 +4,7 @@ import PostList from './PostList';
 class Homepage extends Component {
   render() {
     return (
-      <PostList />
+      <PostList posts={this.props.posts}/>
     );
   }
 }

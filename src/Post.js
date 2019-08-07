@@ -20,13 +20,15 @@ class Post extends Component {
   }
 
   render() {
+    const { id, title, description, body } = this.props.posts.postId;
+    
     return (
-      <div id={this.props.id}>
-        <h1>{this.props.title}</h1>
-        <p>{this.props.description}</p>
-        <p><em>{this.props.body}</em></p>
-        <Button onClick={this.handleEdit}><i class="far fa-edit"></i></Button>
-        <Button onClick={this.handleDelete}><i class="far fa-window-close"></i></Button>
+      <div id={id}>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <p><em>{body}</em></p>
+        <Button onClick={this.handleEdit}><i className="far fa-edit"></i></Button>
+        <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
       </div>
     );
   }

@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import Post from './Post';
+import PostTitle from './PostTitle';
 
 class PostList extends Component {
   render() {
+    console.log(this.props)
+    const posts = Object.entries(this.props.posts).map(
+      ([key, post]) => {
+        return <PostTitle key={key}
+                          id={key}
+                          title={post.title}
+                          description={post.description}
+                          body={post.body}/>
+    })
+    console.log(posts)
+
     return (
-      <Post title="Test" description="sldghksadlg" body="aegadga"/>
+      <div>
+        <h6>Welcome!</h6>
+        { posts }
+      </div>
     );
   }
 }
