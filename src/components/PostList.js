@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostTitle from './PostTitle';
+import PostTitle from '../containers/PostTitle';
 
 class PostList extends Component {
   render() {

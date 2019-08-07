@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import PostForm from './PostForm';
-import CommentList from './CommentList';
-import CommentForm from './CommentForm';
+import PostForm from '../components/PostForm';
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 class Post extends Component {
   constructor(props) {

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import Homepage from './Homepage';
-import PostForm from './PostForm';
-import Post from './Post';
+import NewPost from '../containers/NewPost';
+import Post from '../containers/Post';
 
 class Routes extends Component {
   render() {
     return (
       <Switch>
         <Route path="/" exact render={() => <Homepage posts={this.props.posts}/>} />
-        <Route path="/new" exact render={rtProps => <PostForm {...rtProps} 
+        <Route path="/new" exact render={rtProps => <NewPost {...rtProps} 
           addPost={this.props.addPost} 
           formType="New Post"/> } />
         <Route path="/:postId" exact render={rtProps => <Post {...rtProps} 

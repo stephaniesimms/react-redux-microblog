@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Nav from './Nav';
 import Routes from './Routes';
 
@@ -17,6 +16,7 @@ class App extends Component {
         }
       }
     };
+    
     this.addPost = this.addPost.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.updatePost = this.updatePost.bind(this);
