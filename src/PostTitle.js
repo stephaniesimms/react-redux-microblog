@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 class PostTitle extends Component {  
   render() {
-    console.log(this.props)
     return (
       <div>
         <Link to={`/${this.props.id}`}>

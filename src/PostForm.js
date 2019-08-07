@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import uuid from 'uuid/v4';
+import { Link } from 'react-router-dom';
 
 class PostForm extends Component {
   constructor(props) {
@@ -71,6 +72,13 @@ class PostForm extends Component {
                   size="md">
                     Post
           </Button>
+          <Link to="/">
+            <Button 
+                    variant="outline-dark" 
+                    size="md">
+                      Cancel
+            </Button>
+          </Link>
         </Form>
       </div>
     );
