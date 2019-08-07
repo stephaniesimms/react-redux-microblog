@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Post from './Post';
 
 class PostList extends Component {
   render() {
     return (
-      <div></div>
+      <Post title="Test" description="sldghksadlg" body="aegadga"/>
     );
   }
 }
