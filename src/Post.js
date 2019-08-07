@@ -10,23 +10,27 @@ class Post extends Component {
   }
 
   handleDelete() {
-    this.props.deletePost(this.props.id);
+    const postId = this.props.match.params.postId;  
+    this.props.deletePost(postId);
     this.props.history.push('/');
   }
 
   handleEdit() {
-    this.props.editPost(this.props.id);
-    this.props.history.push(`/${this.props.id}`);
+    const postId = this.props.match.params.postId;   
+    this.props.editPost(postId);
+    this.props.history.push(`/${postId}`);
   }
 
   render() {
-    const { id, title, description, body } = this.props.posts.postId;
-    
+    const postId = this.props.match.params.postId;   
+    const post = this.props.posts[postId];
+    const { title, description, body } = post;
+
     return (
-      <div id={id}>
+      <div id={postId}>
         <h1>{title}</h1>
-        <p>{description}</p>
-        <p><em>{body}</em></p>
+        <p><em>{description}</em></p>
+        <p>{body}</p>
         <Button onClick={this.handleEdit}><i className="far fa-edit"></i></Button>
         <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
       </div>

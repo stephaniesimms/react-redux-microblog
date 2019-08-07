@@ -3,7 +3,6 @@ import PostTitle from './PostTitle';
 
 class PostList extends Component {
   render() {
-    console.log(this.props)
     const posts = Object.entries(this.props.posts).map(
       ([key, post]) => {
         return <PostTitle key={key}
@@ -11,8 +10,7 @@ class PostList extends Component {
                           title={post.title}
                           description={post.description}
                           body={post.body}/>
-    })
-    console.log(posts)
+    });
 
     return (
       <div>
