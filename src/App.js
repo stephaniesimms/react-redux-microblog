@@ -16,13 +16,31 @@ class App extends Component {
         }
       }
     };
+    this.addPost = this.addPost.bind(this);
+    this.deletePost = this.deletePost.bind(this);
+  }
+
+  addPost(newPost) {
+    this.setState({
+      posts: {...this.state.posts, newPost}
+    });
+  }
+
+  deletePost(id) {
+    const postsCopy = {...this.state.posts};
+    delete postsCopy[id];
+    this.setState({
+      posts: postsCopy
+    });
   }
 
   render() {
     return (
       <div className="App">
         <Nav />
-        <Routes posts={this.state.posts}/>
+        <Routes posts={this.state.posts} 
+          deletePost={this.deletePost}
+          addPost={this.addPost} />
       </div>
     );
   }

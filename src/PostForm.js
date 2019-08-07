@@ -32,6 +32,7 @@ class PostForm extends Component {
       description: '',
       body: ''
     });
+    this.props.history.push('/');
   };
 
   render() {
