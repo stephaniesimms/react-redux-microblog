@@ -25,7 +25,7 @@ class PostForm extends Component {
       this.setState({
         title,
         description,
-        body
+        body,
       });
     }
   }
@@ -36,24 +36,20 @@ class PostForm extends Component {
     });
   };
 
+  // checks the formType prop sent from Post component to decide whether 
+  // to create a new post or edit an existing post
   async handleSubmit(evt) {
     evt.preventDefault();
-    // console.log(this.props)
+
     if (this.props.formType === "Edit") {
       this.props.updatePost({...this.state });
     } else {
-      this.props.addPost({ ...this.state, id: uuid() });
-      this.setState({
-        title: '',
-        description: '',
-        body: ''
-      });
+      this.props.addPost({ ...this.state, comments: [] }, uuid());
       this.props.history.push('/');
     }
   };
 
   render() {
-    // console.log("this.props in postform render", this.props)
     return (
       <div style={{ border: "2px solid rgba(0,0,0,.125)", borderRadius: "10px", padding: "10px", overflow: "auto" }}>
         <h1>{this.props.formType}</h1>
@@ -92,9 +88,9 @@ class PostForm extends Component {
           </Button>
           <Link to="/">
             <Button 
-                    variant="outline-dark" 
-                    size="md">
-                      Cancel
+                variant="outline-dark" 
+                size="md">
+                  Cancel
             </Button>
           </Link>
         </Form>

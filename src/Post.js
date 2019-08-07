@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import PostForm from './PostForm';
+import CommentList from './CommentList';
+import CommentForm from './CommentForm';
 
 class Post extends Component {
   constructor(props) {
@@ -37,7 +39,8 @@ class Post extends Component {
   render() {
     const postId = this.props.match.params.postId;   
     const post = this.props.posts[postId];
-    const { title, description, body } = post;
+    const { title, description, body, comments } = post;
+    
     const editForm = <PostForm  
       formType="Edit" 
       post={post} 
@@ -45,6 +48,9 @@ class Post extends Component {
       updatePost={this.handleEdit} 
     />
 
+    // check if this.state editing is true
+    // if so set formType to handle data flow for editing a blog
+    // otherwise don't show edit form
     return (
       <div id={postId}>
         <h1>{title}</h1>
@@ -53,6 +59,8 @@ class Post extends Component {
         <Button onClick={this.showEditForm}><i className="far fa-edit"></i></Button>
         <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
         { this.state.editing ? editForm : null}
+        <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={postId}/>
+        <CommentForm addComment={this.props.addComment} postId={postId}/>
       </div>
     );
   }

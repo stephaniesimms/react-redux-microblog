@@ -15,7 +15,9 @@ class Routes extends Component {
         <Route path="/:postId" exact render={rtProps => <Post {...rtProps} 
           posts={this.props.posts}
           deletePost={this.props.deletePost}
-          updatePost={this.props.updatePost} 
+          updatePost={this.props.updatePost}
+          addComment={this.props.addComment}
+          deleteComment={this.props.deleteComment}
           />} />
         <Redirect to="/" />
       </Switch>
