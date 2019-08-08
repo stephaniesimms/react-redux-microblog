@@ -44,7 +44,8 @@ class CommentForm extends Component {
                         value={this.state.comment}
                         placeholder="New Comment" 
                         size="md" 
-                        type="text" />
+                        type="text"
+                        alt="comment" />
         </Form.Group>
         <Button type="submit" 
                 variant="outline-dark" 

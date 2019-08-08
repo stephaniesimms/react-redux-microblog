@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import PostForm from '../components/PostForm';
+import PostForm from './PostForm';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import { deletePost, updatePost } from '../actions';
@@ -41,8 +41,8 @@ class Post extends Component {
   }
 
   render() {
-    const postId = this.props.match.params.postId;   
-    const post = this.props.posts[postId];
+    const postId = this.props.match.params.postId; 
+    const post = this.props.post;
     const { title, description, body, comments } = post;
     
     const editForm = <PostForm  
@@ -56,7 +56,7 @@ class Post extends Component {
     // if so set formType to handle data flow for editing a blog
     // otherwise don't show edit form
     return (
-      <div id={postId}>
+      <div>
         <h1>{title}</h1>
         <p><em>{description}</em></p>
         <p>{body}</p>
@@ -70,8 +70,9 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { posts: state.posts };
+function mapStateToProps(state, ownProps) {
+  const postId = ownProps.match.params.postId;  
+  return { post: state.posts[postId] };
 }
 
 export default connect(mapStateToProps, 

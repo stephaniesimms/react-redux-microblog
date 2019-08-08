@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addPost } from '../actions';
 
-
-
 class PostForm extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +13,7 @@ class PostForm extends Component {
     this.state = { 
       title: '',
       description: '',
-      body: ''
+      body: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -65,7 +63,8 @@ class PostForm extends Component {
                           onChange={this.handleChange}
                           value={this.state.title} 
                           size="md" 
-                          type="text" />
+                          type="text"
+                          alt="title" />
           </Form.Group>
           <Form.Group>
           <Form.Label>Description</Form.Label>
@@ -74,7 +73,8 @@ class PostForm extends Component {
                           onChange={this.handleChange}
                           value={this.state.description}
                           size="md" 
-                          type="text" /> 
+                          type="text"
+                          alt="description" /> 
           </Form.Group>
           <Form.Group>
           <Form.Label>Body</Form.Label>
@@ -83,7 +83,8 @@ class PostForm extends Component {
                           onChange={this.handleChange}
                           value={this.state.body} 
                           size="md" 
-                          as="textarea" /> 
+                          as="textarea"
+                          alt="body" /> 
           </Form.Group>
           <Button type="submit" 
                   variant="outline-dark" 

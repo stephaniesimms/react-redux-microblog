@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import Homepage from './Homepage';
-import NewPost from '../containers/NewPost';
+import PostForm from '../containers/PostForm';
 import Post from '../containers/Post';
 
 class Routes extends Component {
@@ -9,7 +9,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route path="/" exact render={() => <Homepage />} />
-        <Route path="/new" exact render={rtProps => <NewPost {...rtProps} 
+        <Route path="/new" exact render={rtProps => <PostForm {...rtProps} 
           formType="New Post"/> } />
         <Route path="/:postId" exact render={rtProps => <Post {...rtProps} />} />
         <Redirect to="/" />
