@@ -8,9 +8,9 @@ class Nav extends Component {
         <h1>Microblog</h1>
         <h4>Get in the Rithm of blogging!</h4>
           <nav className="navbar">
-            <ul className="navbar-nav">
+            <ul className="nav ml-auto">
               <Link to='/'>
-                <li className="nav-item">Blog</li>
+                <li className="nav-item mr-4">Blog</li>
               </Link>
               <Link to="/new">
                 <li className="nav-item">Add a new post</li>
