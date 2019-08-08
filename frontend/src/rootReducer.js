@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, ADD_COMMENT, DELETE_COMMENT } from "./actionTypes";
+import { ADD_POST, DELETE_POST, UPDATE_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES } from "./actionTypes";
 
 const DEFAULT_STATE = {
   posts: {
@@ -11,11 +11,21 @@ const DEFAULT_STATE = {
         {comment: "i agree", id: "f37168fd-922c-4b45-abc9-32bae93014d9"}
       ]
     }
-  }
+  },
+  titles: [{
+    id: 'post1',
+    title: 'testpost',
+    description: 'wednesdayyayay'
+  }]
 }
 
 function rootReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
+    case LOAD_TITLES: {
+      const titles = action.titles;
+
+      return {...state, titles}
+    }
     case ADD_POST: {
       const postsCopy = {...state.posts};
       postsCopy[action.post.id] = action.post;

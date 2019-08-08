@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import PostTitle from '../components/PostTitle';
 import { connect } from "react-redux";
+import { getTitlesFromAPI } from '../actions';
 
 class PostList extends Component {
+  componentDidMount() {
+    this.props.getTitlesFromAPI();
+  }
+
   render() {
-    const posts = Object.entries(this.props.posts).map(
-      ([key, post]) => {
-        return <PostTitle key={key}
-                          id={key}
-                          title={post.title}
-                          description={post.description}
-                          body={post.body}/>
-    });
+    const titles = this.props.titles.map(
+      (title) => 
+        <PostTitle key={title.id}
+          id={title.id}
+          title={title.title}
+          description={title.description} />
+    );
 
     return (
       <div>
         <h6>Welcome!</h6>
-        { posts }
+        { titles }
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts };
+  return { titles: state.titles };
 }
 
-export default connect(mapStateToProps)(PostList);
+export default connect(mapStateToProps, { getTitlesFromAPI })(PostList);
