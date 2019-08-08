@@ -25,7 +25,7 @@ class CommentForm extends Component {
 
   async handleSubmit(evt) {
     evt.preventDefault();
-
+    
     this.props.addComment(
       this.props.postId, 
       { comment:this.state.comment, id: uuid()}

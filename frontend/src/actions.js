@@ -1,9 +1,8 @@
 import { ADD_POST, DELETE_POST, UPDATE_POST, ADD_COMMENT, DELETE_COMMENT } from "./actionTypes";
 
-export function addPost(post, postId) {
+export function addPost(post) {
   return {
     type: ADD_POST,
-    postId,
     post
     }
 }
@@ -15,10 +14,9 @@ export function deletePost(id) {
     }
 }
 
-export function updatePost(post, postId) {
+export function updatePost(post) {
   return {
     type: UPDATE_POST,
-    postId,
     post
     }
 }

@@ -46,7 +46,8 @@ class PostForm extends Component {
       this.props.updatePost({...this.state, 
         comments: this.props.post.comments });
     } else {
-      this.props.addPost({ ...this.state, comments: [] }, uuid());
+      const id = uuid();
+      this.props.addPost({ ...this.state, comments: [], id});
       this.props.history.push('/');
     }
   };

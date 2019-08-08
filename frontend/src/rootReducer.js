@@ -3,6 +3,7 @@ import { ADD_POST, DELETE_POST, UPDATE_POST, ADD_COMMENT, DELETE_COMMENT } from 
 const DEFAULT_STATE = {
   posts: {
     post1: {
+      id: 'post1',
       title: 'testpost',
       description: 'wednesdayyayay',
       body: "happy hump day y'all",
@@ -17,7 +18,7 @@ function rootReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case ADD_POST: {
       const postsCopy = {...state.posts};
-      postsCopy[action.postId] = action.post;
+      postsCopy[action.post.id] = action.post;
 
       return {...state, posts: postsCopy};
     }
@@ -29,27 +30,26 @@ function rootReducer(state = DEFAULT_STATE, action) {
     }
     case UPDATE_POST: {
       const postsCopy = {...state.posts};
-      postsCopy[action.postId] = action.post;
+      postsCopy[action.post.id] = action.post;
 
       return {...state, posts: postsCopy};
     }
     case ADD_COMMENT: {
       const postsCopy = {...state.posts};
-      const post = postsCopy[action.postId];
-      post.comments = [...post.comments, action.comment];
-
-      return {...state, posts: postsCopy};
+      const postCopy = postsCopy[action.postId];
+      const comments = [...postCopy.comments, action.comment];
+      
+      return {...state, posts: {...postsCopy, [action.postId]: {...postCopy, comments}}}
     }
     case DELETE_COMMENT: {
       const postsCopy = {...state.posts};
-      const post = postsCopy[action.postId];
-      const comments = post.comments;
+      const postCopy = postsCopy[action.postId];
+      const comments = postCopy.comments;
 
       // Remove comment by filtering
       const updatedComments = comments.filter(comment => comment.id !== action.commentId);
-      post.comments = updatedComments;
 
-      return {...state, posts: postsCopy}
+      return {...state, posts: {...postsCopy, [action.postId]: {...postCopy, comments: updatedComments}}}
     }
     default:
       return state;

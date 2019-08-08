@@ -41,14 +41,13 @@ class Post extends Component {
   }
 
   render() {
-    const postId = this.props.match.params.postId; 
     const post = this.props.post;
-    const { title, description, body, comments } = post;
+    const { title, description, body, comments, id } = post;
     
     const editForm = <PostForm  
       formType="Edit" 
       post={post} 
-      id={postId}           
+      id={id}           
       updatePost={this.handleEdit} 
     />
 
@@ -63,8 +62,8 @@ class Post extends Component {
         <Button onClick={this.showEditForm}><i className="far fa-edit"></i></Button>
         <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
         { this.state.editing ? editForm : null}
-        <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={postId}/>
-        <CommentForm addComment={this.props.addComment} postId={postId}/>
+        <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={id}/>
+        <CommentForm addComment={this.props.addComment} postId={id}/>
       </div>
     );
   }
