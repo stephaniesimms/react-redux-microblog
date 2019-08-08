@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import uuid from 'uuid/v4';
+import { connect } from 'react-redux';
+import { addComment } from '../actions';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -54,4 +56,8 @@ class CommentForm extends Component {
   }
 }
 
-export default CommentForm;
+function mapStateToProps(state) {
+  return { posts: state.posts };
+}
+
+export default connect(mapStateToProps, { addComment })(CommentForm);

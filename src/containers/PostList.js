@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PostTitle from '../containers/PostTitle';
+import PostTitle from '../components/PostTitle';
+import { connect } from "react-redux";
 
 class PostList extends Component {
   render() {
@@ -21,4 +22,8 @@ class PostList extends Component {
   }
 }
 
-export default PostList;
+function mapStateToProps(state) {
+  return { posts: state.posts };
+}
+
+export default connect(mapStateToProps)(PostList);

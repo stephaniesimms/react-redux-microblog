@@ -3,6 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import uuid from 'uuid/v4';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addPost } from '../actions';
+
+
 
 class PostForm extends Component {
   constructor(props) {
@@ -40,9 +44,9 @@ class PostForm extends Component {
   // to create a new post or edit an existing post
   async handleSubmit(evt) {
     evt.preventDefault();
-
     if (this.props.formType === "Edit") {
-      this.props.updatePost({...this.state });
+      this.props.updatePost({...this.state, 
+        comments: this.props.post.comments });
     } else {
       this.props.addPost({ ...this.state, comments: [] }, uuid());
       this.props.history.push('/');
@@ -99,4 +103,8 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+function mapStateToProps(state) {
+  return { posts: state.posts };
+}
+
+export default connect(mapStateToProps, { addPost })(PostForm);

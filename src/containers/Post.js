@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import PostForm from '../components/PostForm';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import { deletePost, updatePost } from '../actions';
+import { connect } from "react-redux";
 
 class Post extends Component {
   constructor(props) {
@@ -25,12 +27,14 @@ class Post extends Component {
   handleDelete() {
     const postId = this.props.match.params.postId;  
     this.props.deletePost(postId);
+
     this.props.history.push('/');
   }
 
-  handleEdit(newPost) {
+  handleEdit(updatedPost) {
     const postId = this.props.match.params.postId;   
-    this.props.updatePost(newPost, postId);
+    this.props.updatePost(updatedPost, postId);
+
     this.setState({
       editing: false
     });
@@ -66,4 +70,9 @@ class Post extends Component {
   }
 }
 
-export default Post;
+function mapStateToProps(state) {
+  return { posts: state.posts };
+}
+
+export default connect(mapStateToProps, 
+  { deletePost, updatePost })(Post);

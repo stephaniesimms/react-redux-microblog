@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteComment } from '../actions';
 
 class Comment extends Component {
   constructor(props) {
@@ -10,8 +12,8 @@ class Comment extends Component {
   handleDelete(evt) {
     evt.preventDefault();
 
-    const { postId, id } = this.props
-    this.props.deleteComment(postId, id);
+    const { postId, commentId } = this.props
+    this.props.deleteComment(postId, commentId);
   }
 
   render() {
@@ -24,4 +26,4 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+export default connect(null, { deleteComment })(Comment);
