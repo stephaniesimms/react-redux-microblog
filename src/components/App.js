@@ -7,13 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <Routes posts={this.state.posts} 
-          deletePost={this.deletePost}
-          addPost={this.addPost}
-          updatePost={this.updatePost}
-          addComment={this.addComment}
-          deleteComment={this.deleteComment}
-          />
+        <Routes />
       </div>
     );
   }

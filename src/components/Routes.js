@@ -8,17 +8,10 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/" exact render={() => <Homepage posts={this.props.posts}/>} />
+        <Route path="/" exact render={() => <Homepage />} />
         <Route path="/new" exact render={rtProps => <NewPost {...rtProps} 
-          addPost={this.props.addPost} 
           formType="New Post"/> } />
-        <Route path="/:postId" exact render={rtProps => <Post {...rtProps} 
-          posts={this.props.posts}
-          deletePost={this.props.deletePost}
-          updatePost={this.props.updatePost}
-          addComment={this.props.addComment}
-          deleteComment={this.props.deleteComment}
-          />} />
+        <Route path="/:postId" exact render={rtProps => <Post {...rtProps} />} />
         <Redirect to="/" />
       </Switch>
     );

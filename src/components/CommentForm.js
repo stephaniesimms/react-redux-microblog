@@ -56,8 +56,4 @@ class CommentForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { posts: state.posts };
-}
-
-export default connect(mapStateToProps, { addComment })(CommentForm);
+export default connect(null, { addComment })(CommentForm);
