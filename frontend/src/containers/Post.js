@@ -5,6 +5,7 @@ import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import { deletePost, updatePost } from '../actions';
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 class Post extends Component {
   constructor(props) {
@@ -41,31 +42,35 @@ class Post extends Component {
   }
 
   render() {
-    const post = this.props.post;
-    const { title, description, body, comments, id } = post;
-    
-    const editForm = <PostForm  
-      formType="Edit" 
-      post={post} 
-      id={id}           
-      updatePost={this.handleEdit} 
-    />
-
-    // check if this.state editing is true
-    // if so set formType to handle data flow for editing a blog
-    // otherwise don't show edit form
-    return (
-      <div>
-        <h1>{title}</h1>
-        <p><em>{description}</em></p>
-        <p>{body}</p>
-        <Button onClick={this.showEditForm}><i className="far fa-edit"></i></Button>
-        <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
-        { this.state.editing ? editForm : null}
-        <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={id}/>
-        <CommentForm addComment={this.props.addComment} postId={id}/>
-      </div>
-    );
+    try {
+      const post = this.props.post;
+      const { title, description, body, comments, id } = post;
+      
+      const editForm = <PostForm  
+        formType="Edit" 
+        post={post} 
+        id={id}           
+        updatePost={this.handleEdit} 
+      />
+  
+      // check if this.state editing is true
+      // if so set formType to handle data flow for editing a blog
+      // otherwise don't show edit form
+      return (
+        <div>
+          <h1>{title}</h1>
+          <p><em>{description}</em></p>
+          <p>{body}</p>
+          <Button onClick={this.showEditForm}><i className="far fa-edit"></i></Button>
+          <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
+          { this.state.editing ? editForm : null}
+          <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={id}/>
+          <CommentForm addComment={this.props.addComment} postId={id}/>
+        </div>
+      );
+    } catch(error) {
+      return <Redirect to='/' />
+    }
   }
 }
 
