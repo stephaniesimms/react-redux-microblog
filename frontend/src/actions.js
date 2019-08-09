@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, REDIRECT } from "./actionTypes";
+import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, SHOW_ERROR } from "./actionTypes";
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api/posts';
@@ -47,11 +47,13 @@ export function getPostFromAPI(id) {
   return async function(dispatch) {
     try {
       const res = await axios.get(`${BASE_URL}/${id}`);
-      if (res.data === "") throw new Error("nope");
+      
+      if (res.data === "") {
+        throw new Error('Cannot find post');
+      }
       dispatch(getPost(res.data));
     } catch (error) {
-      console.log(error)
-      dispatch(redirect())
+      dispatch(showErr(error))
     }
   } 
 }
@@ -110,16 +112,12 @@ export function deleteComment(postId, commentId) {
 //can refactor this action creator to show an error message/page
 //for other UI error handling cf. Andrew and Chantal's approach
 // following comments below for showErr(msg)
-export function redirect() {
-  return {
-    type: REDIRECT
-  }
-}
+
 
 // function startLoad() {
 //   return { type: "SHOW_SPINNER" };
 // }
 
-// function showErr(msg) {
-//   return { type: "SHOW_ERR", msg };
-// }
+function showErr(msg) {
+  return { type: SHOW_ERROR, msg };
+}

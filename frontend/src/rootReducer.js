@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, REDIRECT } from "./actionTypes";
+import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, SHOW_ERROR } from "./actionTypes";
 
 const DEFAULT_STATE = {
   posts: {
@@ -62,8 +62,8 @@ function rootReducer(state = DEFAULT_STATE, action) {
 
       return {...state, posts: {...postsCopy, [action.postId]: {...postCopy, comments: updatedComments}}}
     }
-    case REDIRECT: {
-      return  new Error('No post found');
+    case SHOW_ERROR: {
+      return {...state, error: action.msg}
     }
     default:
       return state;

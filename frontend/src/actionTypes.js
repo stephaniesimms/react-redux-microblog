@@ -5,4 +5,4 @@ export const GET_POST = "GET_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const LOAD_TITLES = "LOAD_TITLES";
-export const REDIRECT = "REDIRECT";
+export const SHOW_ERROR = "SHOW_ERROR";
