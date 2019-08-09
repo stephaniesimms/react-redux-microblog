@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 class PostTitle extends Component {  
   render() {
     return (
-      <Card style={{ width: '40vw', display: 'inline-block', marginRight: '15px' }}>
+      <Card style={{ width: '40vw', display: 'inline-block', marginRight: '15px', maxWidth: '300px' }}>
         <Link to={`/${this.props.id}`}>
           <Card.Title style={{ marginTop: '15px' }}>{this.props.title}</Card.Title>
         </Link>

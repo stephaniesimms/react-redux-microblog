@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+import './PostForm.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { sendPostToAPI } from '../actions';
@@ -54,38 +57,44 @@ class PostForm extends Component {
 
   render() {
     return (
-      <div style={{ border: "2px solid rgba(0,0,0,.125)", borderRadius: "10px", padding: "10px", overflow: "auto" }}>
+      <div className='PostForm'>
         <h1>{this.props.formType}</h1>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label>Title</Form.Label>
-            <Form.Control id="title"
-                          name="title"
-                          onChange={this.handleChange}
-                          value={this.state.title} 
-                          size="md" 
-                          type="text"
-                          alt="title" />
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>Title</Form.Label>
+            <Col sm={10}>
+              <Form.Control id="title"
+                            name="title"
+                            onChange={this.handleChange}
+                            value={this.state.title} 
+                            size="md" 
+                            type="text"
+                            alt="title" />
+            </Col>
           </Form.Group>
-          <Form.Group>
-          <Form.Label>Description</Form.Label>
-            <Form.Control id="description"
-                          name="description"
-                          onChange={this.handleChange}
-                          value={this.state.description}
-                          size="md" 
-                          type="text"
-                          alt="description" /> 
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>Description</Form.Label>
+            <Col sm={10}>
+              <Form.Control id="description"
+                            name="description"
+                            onChange={this.handleChange}
+                            value={this.state.description}
+                            size="md" 
+                            type="text"
+                            alt="description" />
+            </Col>
           </Form.Group>
-          <Form.Group>
-          <Form.Label>Body</Form.Label>
-            <Form.Control id="body"
-                          name="body"
-                          onChange={this.handleChange}
-                          value={this.state.body} 
-                          size="md" 
-                          as="textarea"
-                          alt="body" /> 
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>Body</Form.Label>
+            <Col sm={10}>
+              <Form.Control id="body"
+                            name="body"
+                            onChange={this.handleChange}
+                            value={this.state.body} 
+                            size="md" 
+                            as="textarea"
+                            alt="body" rows="5"/> 
+            </Col>
           </Form.Group>
           <Button type="submit" 
                   variant="outline-dark" 
@@ -93,13 +102,9 @@ class PostForm extends Component {
                     Post
           </Button>
           <Link to="/">
-            <Button 
-                variant="outline-dark" 
-                size="md">
-                  Cancel
-            </Button>
+            <Button variant="outline-dark" size="md">Cancel</Button>
           </Link>
-        </Form>
+        </Form> 
       </div>
     );
   }
