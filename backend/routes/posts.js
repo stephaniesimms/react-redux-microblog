@@ -29,6 +29,7 @@ router.get("/", async function (req, res, next) {
       ORDER BY p.id
       `
     );
+
     return res.json(result.rows);
   } catch (err) {
     return next(err);
@@ -107,6 +108,7 @@ router.post("/", async function (req, res, next) {
         VALUES ($1, $2, $3) 
         RETURNING id, title, description, body, votes`,
       [title, description, body]);
+
     return res.status(201).json(result.rows[0]);
   } catch (err) {
     return next(err);

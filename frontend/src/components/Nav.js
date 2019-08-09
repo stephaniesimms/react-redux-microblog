@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Nav extends Component {
   render() {
     return (
-      <div className="jumbotron" style={{ padding: '10px', backgroundColor: 'white' }}>
+      <div className="jumbotron" style={{ padding: '10px', backgroundColor: 'white', maxWidth: '100%' }}>
         <h1>Microblog</h1>
         <h4>Get in the Rithm of blogging!</h4>
         <nav className="navbar">

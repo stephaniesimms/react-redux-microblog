@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { getTitlesFromAPI } from '../actions';
 
 class PostList extends Component {
-  componentDidMount() {
-    this.props.getTitlesFromAPI();
+  async componentDidMount() {
+    await this.props.getTitlesFromAPI();
   }
 
   render() {
@@ -16,7 +16,7 @@ class PostList extends Component {
           title={title.title}
           description={title.description} />
     );
-    console.log('POSTLIST:', titles)
+
     return (
       <div>
         { titles }

@@ -50,7 +50,8 @@ class PostForm extends Component {
         comments: this.props.post.comments });
     } else {
       const { title, description, body } = this.state;
-      this.props.sendPostToAPI({ title, description, body });
+      await this.props.sendPostToAPI({ title, description, body });
+
       this.props.history.push('/');
     }
   };

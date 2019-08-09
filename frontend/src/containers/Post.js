@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import PostForm from './PostForm';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
-import { deletePost, updatePost } from '../actions';
+import { sendDeleteToAPI, updatePost, getPostFromAPI } from '../actions';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
 
@@ -14,20 +14,24 @@ class Post extends Component {
     this.state = {
       editing: false
     }
-
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
   }
 
+  async componentDidMount() {
+    if (!this.props.post) {
+      await this.props.getPostFromAPI(this.props.id);
+    }
+  }
+  
   showEditForm() {
-    this.setState({ editing: true
-     });
+    this.setState({ editing: true });
   }
 
   handleDelete() {
     const postId = this.props.match.params.postId;  
-    this.props.deletePost(postId);
+    this.props.sendDeleteToAPI(postId);
 
     this.props.history.push('/');
   }
@@ -42,17 +46,21 @@ class Post extends Component {
   }
 
   render() {
+    if (!this.props.post) {
+      return "Loading...";
+    }
+
     try {
       const post = this.props.post;
       const { title, description, body, comments, id } = post;
-      
+
       const editForm = <PostForm  
         formType="Edit" 
         post={post} 
         id={id}           
         updatePost={this.handleEdit} 
       />
-  
+      
       // check if this.state editing is true
       // if so set formType to handle data flow for editing a blog
       // otherwise don't show edit form
@@ -67,17 +75,28 @@ class Post extends Component {
           <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={id}/>
           <CommentForm addComment={this.props.addComment} postId={id}/>
         </div>
-      );
+      ); 
     } catch(error) {
       return <Redirect to='/' />
     }
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const postId = ownProps.match.params.postId;  
-  return { post: state.posts[postId] };
+// function mapStateToProps(state, ownProps) {
+//   console.log("Pre Step: redux state in post", state)
+//   const postId = ownProps.match.params.postId;  
+//   return { post: state.posts[postId] };
+// }
+
+// export default connect(mapStateToProps, 
+//   { sendDeleteToAPI, updatePost, getPostFromAPI })(Post);
+
+function mapDispatchToProps(state, props) {
+  let id = props.match.params.postId;
+  return {
+    id,
+    post: state.posts[id]
+  }
 }
 
-export default connect(mapStateToProps, 
-  { deletePost, updatePost })(Post);
+export default connect(mapDispatchToProps, {sendDeleteToAPI, updatePost, getPostFromAPI}) (Post);

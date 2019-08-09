@@ -6,7 +6,7 @@ class PostTitle extends Component {
   render() {
     return (
       <Card style={{ width: '40vw', display: 'inline-block', marginRight: '15px', maxWidth: '300px' }}>
-        <Link to={`/${this.props.id}`}>
+        <Link to={`/posts/${this.props.id}`}>
           <Card.Title style={{ marginTop: '15px' }}>{this.props.title}</Card.Title>
         </Link>
         <Card.Body>{this.props.description}</Card.Body>

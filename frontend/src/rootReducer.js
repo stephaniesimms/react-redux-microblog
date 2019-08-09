@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES } from "./actionTypes";
+import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, REDIRECT } from "./actionTypes";
 
 const DEFAULT_STATE = {
   posts: {
@@ -19,7 +19,6 @@ function rootReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case LOAD_TITLES: {
       const titles = action.titles;
-      console.log('REDUCER:', titles)
       return {...state, titles}
     }
     case ADD_POST: {
@@ -35,6 +34,12 @@ function rootReducer(state = DEFAULT_STATE, action) {
       return {...state, posts: postsCopy};
     }
     case UPDATE_POST: {
+      const postsCopy = {...state.posts};
+      postsCopy[action.post.id] = action.post;
+
+      return {...state, posts: postsCopy};
+    }
+    case GET_POST: {
       const postsCopy = {...state.posts};
       postsCopy[action.post.id] = action.post;
 
@@ -56,6 +61,9 @@ function rootReducer(state = DEFAULT_STATE, action) {
       const updatedComments = comments.filter(comment => comment.id !== action.commentId);
 
       return {...state, posts: {...postsCopy, [action.postId]: {...postCopy, comments: updatedComments}}}
+    }
+    case REDIRECT: {
+      return  new Error('No post found');
     }
     default:
       return state;
