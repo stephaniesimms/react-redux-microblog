@@ -16,7 +16,7 @@ class PostList extends Component {
           title={title.title}
           description={title.description} />
     );
-
+    console.log('POSTLIST:', titles)
     return (
       <div>
         <h6>Welcome!</h6>

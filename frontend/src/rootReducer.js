@@ -12,18 +12,14 @@ const DEFAULT_STATE = {
       ]
     }
   },
-  titles: [{
-    id: 'post1',
-    title: 'testpost',
-    description: 'wednesdayyayay'
-  }]
+  titles: []
 }
 
 function rootReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case LOAD_TITLES: {
       const titles = action.titles;
-
+      console.log('REDUCER:', titles)
       return {...state, titles}
     }
     case ADD_POST: {

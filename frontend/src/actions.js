@@ -9,6 +9,7 @@ export function getTitlesFromAPI() {
     
     try {
       let res = await axios.get(BASE_URL);
+      console.log("RESPONSE:", res);
       dispatch(gotTitles(res.data));
 
     } catch(error) {
@@ -21,8 +22,20 @@ function gotTitles(titles) {
   return { type: LOAD_TITLES, titles };
 }
 
+// send post object containing title, description, body from PostForm to backend
+// {title, description, body}
+export function sendPostToAPI(post) {
+  return async function(dispatch) {
+    try {
+      let res = await axios.post(BASE_URL, post);
+      dispatch(addPost(res.data)); // FUTURE TO DO: ADD TO REDUX STORE POSTS (BONUS)
+    } catch (error) {
+    // dispatch(showErr(error.res.data));
+    }
+  }
+}
 
-export function addPost(post) {
+function addPost(post) {
   return {
     type: ADD_POST,
     post
