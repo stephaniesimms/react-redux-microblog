@@ -47,7 +47,7 @@ export function getPostFromAPI(id) {
   return async function(dispatch) {
     try {
       const res = await axios.get(`${BASE_URL}/${id}`);
-      
+
       if (res.data === "") {
         throw new Error('Cannot find post');
       }
@@ -65,7 +65,7 @@ function getPost(post) {
   }
 }
 
-export function sendDeleteToAPI (id) {
+export function sendDeleteToAPI(id) {
   return async function(dispatch) {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
@@ -83,10 +83,22 @@ function deletePost(id) {
     }
 }
 
-export function updatePost(post) {
+export function sendUpdateToAPI(post, id) {
+  return async function(dispatch) {
+    try {
+      await axios.put(`${BASE_URL}/${id}`, post);
+      dispatch(updatePost(post, id));
+    } catch(error) {
+    // dispatch(showErr(error.res.data));
+    }
+  }
+}
+
+function updatePost(post, id) {
   return {
     type: UPDATE_POST,
-    post
+    post,
+    id
     }
 }
 

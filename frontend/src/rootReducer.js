@@ -1,17 +1,7 @@
 import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, SHOW_ERROR } from "./actionTypes";
 
 const DEFAULT_STATE = {
-  posts: {
-    post1: {
-      id: 'post1',
-      title: 'testpost',
-      description: 'wednesdayyayay',
-      body: "happy hump day y'all",
-      comments: [
-        {comment: "i agree", id: "f37168fd-922c-4b45-abc9-32bae93014d9"}
-      ]
-    }
-  },
+  posts: {},
   titles: []
 }
 
@@ -23,6 +13,7 @@ function rootReducer(state = DEFAULT_STATE, action) {
     }
     case ADD_POST: {
       const postsCopy = {...state.posts};
+      action.post.comments = [];
       postsCopy[action.post.id] = action.post;
 
       return {...state, posts: postsCopy};
@@ -35,8 +26,8 @@ function rootReducer(state = DEFAULT_STATE, action) {
     }
     case UPDATE_POST: {
       const postsCopy = {...state.posts};
-      postsCopy[action.post.id] = action.post;
-
+      postsCopy[action.id] = action.post;
+      
       return {...state, posts: postsCopy};
     }
     case GET_POST: {

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import PostForm from './PostForm';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
-import { sendDeleteToAPI, updatePost, getPostFromAPI } from '../actions';
+import { sendDeleteToAPI, sendUpdateToAPI, getPostFromAPI } from '../actions';
 import { connect } from "react-redux";
 
 class Post extends Component {
@@ -28,16 +28,16 @@ class Post extends Component {
     this.setState({ editing: true });
   }
 
-  handleDelete() {
+  async handleDelete() {
     const postId = this.props.match.params.postId;  
-    this.props.sendDeleteToAPI(postId);
+    await this.props.sendDeleteToAPI(postId);
 
     this.props.history.push('/');
   }
 
-  handleEdit(updatedPost) {
+  async handleEdit(updatedPost) {
     const postId = this.props.match.params.postId;   
-    this.props.updatePost(updatedPost, postId);
+    await this.props.sendUpdateToAPI(updatedPost, postId);
 
     this.setState({
       editing: false
@@ -100,4 +100,4 @@ function mapDispatchToProps(state, props) {
   }
 }
 
-export default connect(mapDispatchToProps, {sendDeleteToAPI, updatePost, getPostFromAPI}) (Post);
+export default connect(mapDispatchToProps, {sendDeleteToAPI, sendUpdateToAPI, getPostFromAPI}) (Post);
