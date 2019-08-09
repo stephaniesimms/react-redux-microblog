@@ -19,7 +19,6 @@ class PostList extends Component {
     console.log('POSTLIST:', titles)
     return (
       <div>
-        <h6>Welcome!</h6>
         { titles }
       </div>
     );

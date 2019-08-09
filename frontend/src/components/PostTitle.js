@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 
 class PostTitle extends Component {  
   render() {
     return (
-      <div>
+      <Card style={{ width: '40vw', display: 'inline-block', marginRight: '15px' }}>
         <Link to={`/${this.props.id}`}>
-          <h6>{this.props.title}</h6>
+          <Card.Title style={{ marginTop: '15px' }}>{this.props.title}</Card.Title>
         </Link>
-        <p>{this.props.description}</p>
-      </div>
+        <Card.Body>{this.props.description}</Card.Body>
+      </Card>
     );
   }
 }
