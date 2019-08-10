@@ -13,14 +13,17 @@ class Post extends Component {
     this.state = {
       editing: false
     }
+
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
   }
 
+  // Confirm the if statement below, loads post from redux state if available
   async componentDidMount() {
     if (!this.props.post) {
       await this.props.getPostFromAPI(this.props.id);
+      // TODO: GET COMMENTS FOR POST
     }
   }
   
@@ -82,20 +85,12 @@ class Post extends Component {
   }
 }
 
-// function mapStateToProps(state, ownProps) {
-//   console.log("Pre Step: redux state in post", state)
-//   const postId = ownProps.match.params.postId;  
-//   return { post: state.posts[postId] };
-// }
-
-// export default connect(mapStateToProps, 
-//   { sendDeleteToAPI, updatePost, getPostFromAPI })(Post);
-
 function mapDispatchToProps(state, props) {
   let id = props.match.params.postId;
   return {
     id,
     post: state.posts[id],
+    //comments
     error: state.error
   }
 }

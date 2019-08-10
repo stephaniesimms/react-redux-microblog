@@ -5,15 +5,8 @@ const BASE_URL = 'http://localhost:5000/api/posts';
 
 export function getTitlesFromAPI() {
   return async function(dispatch) {
-    // dispatch(startLoad());
-    
-    try {
-      const res = await axios.get(`${BASE_URL}`);
-      dispatch(gotTitles(res.data));
-
-    } catch(error) {
-      // dispatch(showErr(error.res.data));
-    }
+    const res = await axios.get(`${BASE_URL}`);
+    dispatch(gotTitles(res.data));
   }
 }
 
@@ -25,12 +18,8 @@ function gotTitles(titles) {
 // {title, description, body}
 export function sendPostToAPI(post) {
   return async function(dispatch) {
-    try {
-      const res = await axios.post(BASE_URL, post);
-      dispatch(addPost(res.data)); // FUTURE TO DO: ADD TO REDUX STORE POSTS (BONUS)
-    } catch (error) {
-    // dispatch(showErr(error.res.data));
-    }
+    const res = await axios.post(BASE_URL, post);
+    dispatch(addPost(res.data)); 
   }
 }
 
@@ -41,8 +30,6 @@ function addPost(post) {
     }
 }
 
-// TODO: create show error action creator to handle
-// case where res.data === '' - nonexistent post ID
 export function getPostFromAPI(id) {
   return async function(dispatch) {
     try {
@@ -67,12 +54,8 @@ function getPost(post) {
 
 export function sendDeleteToAPI(id) {
   return async function(dispatch) {
-    try {
-      await axios.delete(`${BASE_URL}/${id}`);
-      dispatch(deletePost(id));
-    } catch(error) {
-      // dispatch(showErr(error.res.data));
-    }
+    await axios.delete(`${BASE_URL}/${id}`);
+    dispatch(deletePost(id));
   }
 }
 
@@ -85,12 +68,8 @@ function deletePost(id) {
 
 export function sendUpdateToAPI(post, id) {
   return async function(dispatch) {
-    try {
-      await axios.put(`${BASE_URL}/${id}`, post);
-      dispatch(updatePost(post, id));
-    } catch(error) {
-    // dispatch(showErr(error.res.data));
-    }
+    await axios.put(`${BASE_URL}/${id}`, post);
+    dispatch(updatePost(post, id));
   }
 }
 
@@ -101,6 +80,11 @@ function updatePost(post, id) {
     id
     }
 }
+
+// TODO:
+//    GET COMMENTS
+//    POST COMMENTS
+//    DELETE COMMENTS
 
 export function addComment(postId, comment) {
   return {
@@ -117,18 +101,6 @@ export function deleteComment(postId, commentId) {
     commentId
     }
 }
-
-//this doesn't work as we hoped it would - tried to redirect
-//requests for a post ID that doesn't exist but can only display
-//Loading... msg. Solution code exhibits same behavior.
-//can refactor this action creator to show an error message/page
-//for other UI error handling cf. Andrew and Chantal's approach
-// following comments below for showErr(msg)
-
-
-// function startLoad() {
-//   return { type: "SHOW_SPINNER" };
-// }
 
 function showErr(msg) {
   return { type: SHOW_ERROR, msg };
