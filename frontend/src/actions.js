@@ -122,6 +122,7 @@ function deleteComment(postId, commentId) {
 }
 
 export function sendVoteToAPI(id, direction) {
+  console.log('action.js vote', id, direction)
   return async function (dispatch) {
     const response = await axios.post(`${BASE_URL}/${id}/vote/${direction}`);
     return dispatch(vote(id, response.data.votes));
