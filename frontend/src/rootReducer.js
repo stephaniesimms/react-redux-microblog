@@ -83,6 +83,16 @@ function rootReducer(state = DEFAULT_STATE, action) {
       };
     }
 
+    case VOTE: {
+      const postsCopy = { ...state.posts };
+      const postCopy = postsCopy[action.postId];
+      
+      return {
+        ...state,
+        [action.postId]: { ...postCopy, votes: action.votes }
+      };
+    }
+
     case SHOW_ERROR: {
       return { ...state, error: action.msg };
     }

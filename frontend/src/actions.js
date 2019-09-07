@@ -1,4 +1,14 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, SHOW_ERROR } from './actionTypes';
+import {
+  ADD_POST,
+  DELETE_POST,
+  UPDATE_POST,
+  GET_POST,
+  ADD_COMMENT,
+  DELETE_COMMENT,
+  LOAD_TITLES,
+  VOTE,
+  SHOW_ERROR
+} from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api/posts';
@@ -81,12 +91,6 @@ function updatePost(post, id) {
   }
 }
 
-// TODO:
-//    GET COMMENTS
-//    POST COMMENTS
-//    DELETE COMMENTS
-//    VOTE
-
 export function sendCommentToAPI(postId, comment) {
   return async function (dispatch) {
     const result = await axios.post(`${BASE_URL}/${postId}/comments/`, { comment });
@@ -114,6 +118,21 @@ function deleteComment(postId, commentId) {
     type: DELETE_COMMENT,
     postId,
     commentId
+  };
+}
+
+export function sendVoteToAPI(id, direction) {
+  return async function (dispatch) {
+    const response = await axios.post(`${BASE_URL}/${id}/vote/${direction}`);
+    return dispatch(vote(id, response.data.votes));
+  };
+}
+
+function vote(postId, votes) {
+  return {
+    type: VOTE,
+    postId: postId,
+    votes: votes,
   };
 }
 
