@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 /** CommentList: shows list of comments passed down as props.
  *
@@ -35,4 +34,3 @@ class Comment extends Component {
 }
 
 export default Comment;
-// export default connect(null, { deleteComment })(Comment);

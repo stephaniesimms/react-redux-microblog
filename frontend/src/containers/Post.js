@@ -105,7 +105,7 @@ class Post extends Component {
     }
 
     const post = this.props.post;
-    const { title, description, body, comments, id } = post;
+    const { title, description, body, id } = post;
 
     const editForm = <PostForm
       formType='Edit'
@@ -146,7 +146,6 @@ function mapDispatchToProps(state, props) {
   return {
     id,
     post: state.posts[id],
-    //comments
     error: state.error
   };
 }
@@ -159,6 +158,6 @@ export default connect(
     getPostFromAPI,
     sendCommentToAPI,
     deleteCommentFromAPI,
-    // sendVoteToAPI,
+    sendVoteToAPI,
   }
 )(Post);

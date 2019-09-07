@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PostTitle from '../components/PostTitle';
 import { connect } from 'react-redux';
-import { getTitlesFromAPI } from '../actions';
+import { getTitlesFromAPI, sendVoteToAPI } from '../actions';
 
 // TODO: add votes and display posts by popularity
 
@@ -9,6 +9,10 @@ import { getTitlesFromAPI } from '../actions';
 class PostList extends Component {
   async componentDidMount() {
     await this.props.getTitlesFromAPI();
+  }
+
+  vote(direction, id) {
+    this.props.sendVoteToAPI(id, direction);
   }
 
   render() {
@@ -19,7 +23,8 @@ class PostList extends Component {
         <PostTitle key={title.id}
           id={title.id}
           title={title.title}
-          description={title.description} />
+          description={title.description}
+          doVote={this.vote} />
     );
 
     return (
@@ -32,5 +37,7 @@ function mapStateToProps(state) {
   return { titles: state.titles };
 }
 
-
-export default connect(mapStateToProps, { getTitlesFromAPI })(PostList);
+export default connect(
+  mapStateToProps, 
+  { getTitlesFromAPI, sendVoteToAPI }
+  )(PostList);
