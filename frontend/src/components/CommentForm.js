@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import uuid from 'uuid/v4';
-import { connect } from 'react-redux';
-import { addComment } from '../actions';
 
 /** Comment form
  *
@@ -29,11 +26,7 @@ class CommentForm extends Component {
 
   async handleSubmit(evt) {
     evt.preventDefault();
-    
-    this.props.addComment(
-      this.props.postId, 
-      { comment:this.state.comment, id: uuid()}
-    );
+    this.props.submitCommentForm(this.state.comment);
 
     this.setState({ comment: '' });
   };
@@ -61,5 +54,4 @@ class CommentForm extends Component {
   }
 }
 
-
-export default connect(null, { addComment })(CommentForm);
+export default CommentForm;

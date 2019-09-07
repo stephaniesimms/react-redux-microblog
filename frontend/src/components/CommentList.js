@@ -11,8 +11,8 @@ class CommentList extends Component {
     const comments = this.props.comments.map(
       comment => <Comment key={comment.id}
         commentId={comment.id}
-        text={comment.comment}
-        deleteComment={this.props.deleteComment}
+        text={comment.text}
+        triggerDelete={this.props.deleteComment}
         postId={this.props.postId} />
     );
 
