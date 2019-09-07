@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 
+/** Display a post:
+ *
+ * - show edit/delete buttons (& call parent on action)
+ * - show vote count and +/- buttons (& call parent on action)
+ *
+ */
 class PostTitle extends Component {  
   render() {
     return (
@@ -14,5 +20,6 @@ class PostTitle extends Component {
     );
   }
 }
+
 
 export default PostTitle;

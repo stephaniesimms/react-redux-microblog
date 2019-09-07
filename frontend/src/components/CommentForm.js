@@ -5,10 +5,14 @@ import uuid from 'uuid/v4';
 import { connect } from 'react-redux';
 import { addComment } from '../actions';
 
+/** Comment form
+ *
+ * Can be used for adding/editing: shows form and tracks input.
+ *
+ */
 class CommentForm extends Component {
   constructor(props) {
     super(props)
-
     this.state = { 
       comment: ''
     };
@@ -38,23 +42,24 @@ class CommentForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
-          <Form.Control id="comment"
-                        name="comment"
+          <Form.Control id='comment'
+                        name='comment'
                         onChange={this.handleChange}
                         value={this.state.comment}
-                        placeholder="New Comment" 
-                        size="md" 
-                        type="text"
-                        alt="comment" />
+                        placeholder='New Comment' 
+                        size='md' 
+                        type='text'
+                        alt='comment' />
         </Form.Group>
-        <Button type="submit" 
-                variant="outline-dark" 
-                size="md">
+        <Button type='submit' 
+                variant='outline-dark' 
+                size='md'>
                 Add
         </Button>
       </Form>
     );
   }
 }
+
 
 export default connect(null, { addComment })(CommentForm);

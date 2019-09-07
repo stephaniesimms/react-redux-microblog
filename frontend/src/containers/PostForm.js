@@ -8,6 +8,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { sendPostToAPI } from '../actions';
 
+// TODO: should PostForm be a component instead? 
+// maybe refactor to follow solution
+// otherwise update docstring
+
+/** Show post form.
+ *
+ * Can be used for editing/adding --- it just calls the parent with edit
+ * or cancel actions.
+ *
+ */
 class PostForm extends Component {
   constructor(props) {
     super(props)
@@ -45,7 +55,7 @@ class PostForm extends Component {
   async handleSubmit(evt) {
     evt.preventDefault();
 
-    if (this.props.formType === "Edit") {
+    if (this.props.formType === 'Edit') {
       this.props.updatePost({...this.state, 
         comments: this.props.post.comments });
     } else {
@@ -64,46 +74,46 @@ class PostForm extends Component {
           <Form.Group as={Row}>
             <Form.Label column sm={2}>Title</Form.Label>
             <Col sm={10}>
-              <Form.Control id="title"
-                            name="title"
+              <Form.Control id='title'
+                            name='title'
                             onChange={this.handleChange}
                             value={this.state.title} 
-                            size="md" 
-                            type="text"
-                            alt="title" />
+                            size='md' 
+                            type='text'
+                            alt='title' />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm={2}>Description</Form.Label>
             <Col sm={10}>
-              <Form.Control id="description"
-                            name="description"
+              <Form.Control id='description'
+                            name='description'
                             onChange={this.handleChange}
                             value={this.state.description}
-                            size="md" 
-                            type="text"
-                            alt="description" />
+                            size='md' 
+                            type='text'
+                            alt='description' />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm={2}>Body</Form.Label>
             <Col sm={10}>
-              <Form.Control id="body"
-                            name="body"
+              <Form.Control id='body'
+                            name='body'
                             onChange={this.handleChange}
                             value={this.state.body} 
-                            size="md" 
-                            as="textarea"
-                            alt="body" rows="5"/> 
+                            size='md' 
+                            as='textarea'
+                            alt='body' rows='5'/> 
             </Col>
           </Form.Group>
-          <Button type="submit" 
-                  variant="outline-dark" 
-                  size="md">
+          <Button type='submit' 
+                  variant='outline-dark' 
+                  size='md'>
                     Post
           </Button>
-          <Link to="/">
-            <Button variant="outline-dark" size="md">Cancel</Button>
+          <Link to='/'>
+            <Button variant='outline-dark' size='md'>Cancel</Button>
           </Link>
         </Form> 
       </div>
@@ -114,5 +124,6 @@ class PostForm extends Component {
 function mapStateToProps(state) {
   return { posts: state.posts };
 }
+
 
 export default connect(mapStateToProps, { sendPostToAPI })(PostForm);

@@ -4,7 +4,7 @@ const db = require("../db");
 const express = require("express");
 const router = new express.Router();
 
-/** GET /   get overview of posts
+/** GET /  get overview of posts
  *
  * Returns:
  *
@@ -36,7 +36,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/** GET /[id]  get detail on post w/comments
+/** GET /[id] get detail on post w/comments
  *
  * Returns:
  *
@@ -75,7 +75,7 @@ router.get("/:id", async function (req, res, next) {
 });
 
 
-/** POST /[id]/vote/(up|down)    Update up/down as post
+/** POST /[id]/vote/(up|down)   Update up/down as post
  *
  * => { votes: updated-vote-count }
  *
@@ -94,7 +94,7 @@ router.post("/:id/vote/:direction", async function (req, res, next) {
 });
 
 
-/** POST /     add a new post
+/** POST /  add a new post
  *
  * { title, description, body }  =>  { id, title, description, body, votes }
  *
@@ -116,7 +116,7 @@ router.post("/", async function (req, res, next) {
 });
 
 
-/** PUT /[id]     update existing post
+/** PUT /[id]  update existing post
  *
  * { title, description, body }  =>  { id, title, description, body, votes }
  *
@@ -137,7 +137,7 @@ router.put("/:id", async function (req, res, next) {
 });
 
 
-/** DELETE /[id]     delete post
+/** DELETE /[id] delete post
  *
  * => { message: "deleted" }
  *

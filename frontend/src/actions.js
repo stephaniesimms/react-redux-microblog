@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, SHOW_ERROR } from "./actionTypes";
+import { ADD_POST, DELETE_POST, UPDATE_POST, GET_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_TITLES, SHOW_ERROR } from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api/posts';
@@ -35,7 +35,7 @@ export function getPostFromAPI(id) {
     try {
       const res = await axios.get(`${BASE_URL}/${id}`);
 
-      if (res.data === "") {
+      if (res.data === '') {
         throw new Error('Cannot find post');
       }
       dispatch(getPost(res.data));

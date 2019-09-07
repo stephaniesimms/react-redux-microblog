@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 
 
-/** GET /        get comments for post
+/** GET / get comments for post
  *
  * => { id, text }
  *
@@ -23,7 +23,7 @@ router.get("/", async function (req, res, next) {
 });
 
 
-/** POST /      add a comment
+/** POST / add a comment
  *
  * => { id, text }
  *
@@ -42,7 +42,7 @@ router.post("/", async function (req, res, next) {
 });
 
 
-/** PUT /[id]      update comment
+/** PUT /[id] update comment
  *
  * => { id, text }
  *
@@ -60,7 +60,7 @@ router.put("/:id", async function (req, res, next) {
 });
 
 
-/** DELETE /[id]      delete comment
+/** DELETE /[id] delete comment
  *
  * => { message: "deleted" }
  *

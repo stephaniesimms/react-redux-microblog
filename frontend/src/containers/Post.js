@@ -4,12 +4,20 @@ import PostForm from './PostForm';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import { sendDeleteToAPI, sendUpdateToAPI, getPostFromAPI } from '../actions';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
+/** Post:
+ *
+ * - get post data from API, if not present
+ * - allows post to be edited (toggleEdit is local state for this)
+ * - handles edit form submission
+ * - handles add-comment form submission
+ * - handles comment-deletion
+ * - handles post-deletion
+ */
 class Post extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       editing: false
     }
@@ -18,6 +26,8 @@ class Post extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
   }
+
+  /** If we don't have the post, request it from API. */
 
   // Confirm the if statement below, loads post from redux state if available
   async componentDidMount() {
@@ -31,12 +41,16 @@ class Post extends Component {
     this.setState({ editing: true });
   }
 
+  /** Handle post deletion: deletes from backend. */
+
   async handleDelete() {
     const postId = this.props.match.params.postId;  
     await this.props.sendDeleteToAPI(postId);
 
     this.props.history.push('/');
   }
+
+  /** Handle post editing: adds to backend. */
 
   async handleEdit(updatedPost) {
     const postId = this.props.match.params.postId;   
@@ -47,21 +61,26 @@ class Post extends Component {
     });
   }
 
+  /** Render:
+   *
+   * - if not post yet, a loading message
+   * - if editing, the edit form & comments
+   * - if not, the display & comments
+   */
   render() {
-
     if(this.props.error) {
       return <p>Cannot find post</p>;
     }
 
     if (!this.props.post) {
-      return "Loading...";
+      return 'Loading...';
     }
     
     const post = this.props.post;
     const { title, description, body, comments, id } = post;
 
     const editForm = <PostForm  
-      formType="Edit" 
+      formType='Edit' 
       post={post} 
       id={id}           
       updatePost={this.handleEdit} 
@@ -75,8 +94,8 @@ class Post extends Component {
         <h1>{title}</h1>
         <p><em>{description}</em></p>
         <p>{body}</p>
-        <Button onClick={this.showEditForm}><i className="far fa-edit"></i></Button>
-        <Button onClick={this.handleDelete}><i className="far fa-window-close"></i></Button>
+        <Button onClick={this.showEditForm}><i className='far fa-edit'></i></Button>
+        <Button onClick={this.handleDelete}><i className='far fa-window-close'></i></Button>
         { this.state.editing ? editForm : null}
         <CommentList comments={comments} deleteComment={this.props.deleteComment} postId={id}/>
         <CommentForm addComment={this.props.addComment} postId={id}/>
@@ -94,5 +113,6 @@ function mapDispatchToProps(state, props) {
     error: state.error
   }
 }
+
 
 export default connect(mapDispatchToProps, {sendDeleteToAPI, sendUpdateToAPI, getPostFromAPI}) (Post);
