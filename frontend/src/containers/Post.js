@@ -11,7 +11,7 @@ import {
   sendVoteToAPI,
   sendCommentToAPI,
   deleteCommentFromAPI
-} from '../actions';
+} from '../actions/actions';
 
 /** Post:
  *

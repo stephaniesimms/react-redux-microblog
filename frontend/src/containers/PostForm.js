@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import './PostForm.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { sendPostToAPI } from '../actions';
+import { sendPostToAPI } from '../actions/actions';
 
 // TODO: should PostForm be a component instead? 
 // maybe refactor to follow solution

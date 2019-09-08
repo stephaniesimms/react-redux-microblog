@@ -8,7 +8,7 @@ import {
   LOAD_TITLES,
   SHOW_ERROR,
   VOTE
-} from './actionTypes';
+} from './actions/actionTypes';
 
 const DEFAULT_STATE = {
   posts: {},

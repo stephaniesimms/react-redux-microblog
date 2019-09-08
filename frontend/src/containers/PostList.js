@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { getTitlesFromAPI, sendVoteToAPI } from '../actions';
+import { getTitlesFromAPI, sendVoteToAPI } from '../actions/actions';
 
 // FIXME: need to rerender PostTitle and sendVoteToAPI from there when user clicks vote
 // add votes and display posts by popularity
