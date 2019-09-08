@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/Button';
 import PostForm from './PostForm';
+import PostTitle from '../components/PostTitle';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import {
@@ -43,7 +43,6 @@ class Post extends Component {
   async componentDidMount() {
     if (!this.props.post) {
       await this.props.getPostFromAPI(this.props.id);
-      // TODO: GET COMMENTS FOR POST
     }
   }
 
@@ -100,17 +99,16 @@ class Post extends Component {
       return <p>Cannot find post</p>;
     }
 
-    if (!this.props.post) {
+    const post = this.props.post;
+
+    if (!post) {
       return 'Loading...';
     }
-
-    const post = this.props.post;
-    const { title, description, body, id } = post;
 
     const editForm = <PostForm
       formType='Edit'
       post={post}
-      id={id}
+      id={post.id}
       updatePost={this.handleEdit}
     />
 
@@ -119,7 +117,12 @@ class Post extends Component {
     // otherwise don't show edit form
     return (
       <div>
-        <h1>{title}</h1>
+        <PostTitle post={post}
+          showEditForm={this.showEditForm}
+          deletePost={this.handleDelete}
+          doVote={this.vote} />
+
+        {/* <h1>{title}</h1>
         <p><em>{description}</em></p>
         <p>{body}</p>
         <Button onClick={this.showEditForm}>
@@ -127,15 +130,17 @@ class Post extends Component {
         </Button>
         <Button onClick={this.handleDelete}>
           <i className='far fa-window-close'></i>
-        </Button>
+        </Button> */}
 
         {this.state.editing ? editForm : null}
 
-        <CommentList comments={this.props.post.comments}
-          deleteComment={this.deleteComment}
-          postId={id}
-        />
-        <CommentForm submitCommentForm={this.addComment}/>
+        <section>
+          <CommentList comments={post.comments}
+            deleteComment={this.deleteComment}
+            postId={post.id}
+          />
+          <CommentForm submitCommentForm={this.addComment} />
+        </section>
       </div>
     );
   }
