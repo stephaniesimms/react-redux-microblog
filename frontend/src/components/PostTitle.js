@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-
 
 /** Display a post:
  *
@@ -24,28 +22,29 @@ class PostTitle extends Component {
   doVoteDown() {
     this.props.doVote('down');
   }
-  
+
   render() {
     console.log('PostTitle props', this.props)
-    const { deletePost, doVote, post, showEditForm } = this.props;
+    const { deletePost, post, showEditForm } = this.props;
 
     return (
       <div>
         <h1>{post.title}</h1>
         <p><em>{post.description}</em></p>
         <p>{post.body}</p>
-        <Button onClick={showEditForm}>
-          <i className='far fa-edit'></i>
-        </Button>
-        <Button onClick={deletePost}>
-          <i className='far fa-window-close'></i>
-        </Button>
-        <div className="PostDisplay-votes">
-          <b>{post.votes} votes:</b>
 
-          <i className="fas fa-thumbs-up text-success"
+        <i className='fa fa-edit text-primary'
+          onClick={showEditForm} />
+
+        <i className='fa fa-times text-danger'
+          onClick={deletePost} />
+
+        <div className="PostTitle-votes">
+          <b>votes: {post.votes}</b>
+
+          <i className="fas fa-grin-stars text-success"
             onClick={this.doVoteUp} />
-          <i className="fas fa-thumbs-down text-danger"
+          <i className="fas fa-dizzy text-danger"
             onClick={this.doVoteDown} />
         </div>
       </div>

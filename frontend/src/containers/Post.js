@@ -112,9 +112,10 @@ class Post extends Component {
       updatePost={this.handleEdit}
     />
 
-    // check if this.state editing is true
-    // if so set formType to handle data flow for editing a blog
-    // otherwise don't show edit form
+    /** Check if this.state editing is true
+     * if so set formType to handle data flow for editing a blog
+     * otherwise don't show edit form 
+    */
     return (
       <div>
         <PostTitle post={post}

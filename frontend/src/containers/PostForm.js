@@ -21,19 +21,17 @@ import { sendPostToAPI } from '../actions/actions';
 class PostForm extends Component {
   constructor(props) {
     super(props)
-
-    this.state = { 
+    this.state = {
       title: '',
       description: '',
       body: '',
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    if(this.props.post) {
+    if (this.props.post) {
       const { title, description, body } = this.props.post;
 
       this.setState({
@@ -50,14 +48,17 @@ class PostForm extends Component {
     });
   };
 
-  // checks the formType prop sent from Post component to decide whether 
-  // to create a new post or edit an existing post
+  /** Checks the formType prop sent from Post component to decide 
+   * whether to create a new post or edit an existing post
+  */
   async handleSubmit(evt) {
     evt.preventDefault();
 
     if (this.props.formType === 'Edit') {
-      this.props.updatePost({...this.state, 
-        comments: this.props.post.comments });
+      this.props.updatePost({
+        ...this.state,
+        comments: this.props.post.comments
+      });
     } else {
       const { title, description, body } = this.state;
       await this.props.sendPostToAPI({ title, description, body });
@@ -75,47 +76,47 @@ class PostForm extends Component {
             <Form.Label column sm={2}>Title</Form.Label>
             <Col sm={10}>
               <Form.Control id='title'
-                            name='title'
-                            onChange={this.handleChange}
-                            value={this.state.title} 
-                            size='md' 
-                            type='text'
-                            alt='title' />
+                name='title'
+                onChange={this.handleChange}
+                value={this.state.title}
+                size='md'
+                type='text'
+                alt='title' />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm={2}>Description</Form.Label>
             <Col sm={10}>
               <Form.Control id='description'
-                            name='description'
-                            onChange={this.handleChange}
-                            value={this.state.description}
-                            size='md' 
-                            type='text'
-                            alt='description' />
+                name='description'
+                onChange={this.handleChange}
+                value={this.state.description}
+                size='md'
+                type='text'
+                alt='description' />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm={2}>Body</Form.Label>
             <Col sm={10}>
               <Form.Control id='body'
-                            name='body'
-                            onChange={this.handleChange}
-                            value={this.state.body} 
-                            size='md' 
-                            as='textarea'
-                            alt='body' rows='5'/> 
+                name='body'
+                onChange={this.handleChange}
+                value={this.state.body}
+                size='md'
+                as='textarea'
+                alt='body' rows='5' />
             </Col>
           </Form.Group>
-          <Button type='submit' 
-                  variant='outline-dark' 
-                  size='md'>
-                    Post
+          <Button type='submit' variant='primary' size='md'>
+            Post
           </Button>
           <Link to='/'>
-            <Button variant='outline-dark' size='md'>Cancel</Button>
+            <Button variant='secondary' size='md'>
+              Cancel
+            </Button>
           </Link>
-        </Form> 
+        </Form>
       </div>
     );
   }

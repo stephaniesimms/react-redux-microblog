@@ -1,0 +1,7 @@
+Nav a { 
+  margin-right: 2em; 
+}
+
+Nav a.active { 
+  font-weight: bold; 
+}
