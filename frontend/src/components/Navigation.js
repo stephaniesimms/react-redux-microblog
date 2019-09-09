@@ -13,10 +13,10 @@ import './Navigation.css';
 class Navigation extends Component {
   render() {
     return (
-      <Jumbotron>
-        <div className="ml-2">
+      <Jumbotron className='Jumbotron'>
+        <div className='ml-3'>
           <h1>Microblog</h1>
-          <p className="lead">Cooking with hellfire</p>
+          <p className='lead'>Cooking with hellfire</p>
         </div>
         <Navbar>
           <Nav>
