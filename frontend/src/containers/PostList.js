@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import './PostList.css';
 import {
   getTitlesFromAPI,
   sendVoteToAPI
@@ -41,27 +42,27 @@ class PostList extends Component {
 
     const titleList = this.props.titles.map(
       (title) =>
-        <Card key={title.id} 
-          id={title.id}
-          style={{ width: '40vw', display: 'inline-block', marginRight: '15px', maxWidth: '300px' }}>
-          <Link to={`/posts/${title.id}`}>
-            <Card.Title style={{ marginTop: '15px' }}>{title.title}</Card.Title>
-          </Link>
-
-          <Card.Body>{title.description}</Card.Body>
+        <Card key={title.id} id={title.id} className='PostList-card'>
+          <Card.Body>
+            <Link to={`/posts/${title.id}`}>
+              <h6 className='PostList-card-title'>{title.title}</h6>
+            </Link>
+            <p className='PostList-card-description'><em>{title.description}</em></p>
+          </Card.Body>
           <Card.Footer>
             <small>{title.votes} votes</small>
-            <i className="fas fa-grin-stars text-success ml-2"
-              onClick={() => this.vote("up", title.id)} />
-            <i className="fas fa-dizzy text-danger ml-2"
-              onClick={() => this.vote("down", title.id)} />
+            <i className='fas fa-grin-stars text-success ml-2'
+              onClick={() => this.vote('up', title.id)} />
+            <i className='fas fa-dizzy text-danger ml-2'
+              onClick={() => this.vote('down', title.id)} />
           </Card.Footer>
         </Card>
-
     );
 
     return (
-      <div>{titleList}</div>
+      <div className='PostList'>
+        {titleList}
+      </div>
     );
   }
 }
