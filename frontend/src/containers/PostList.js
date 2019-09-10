@@ -43,21 +43,21 @@ class PostList extends Component {
     const titleList = this.props.titles.map(
       (title) =>
         <div className='col' key={title.id}>
-        <Card id={title.id} className='PostList-card'>
-          <Card.Body>
-            <Link to={`/posts/${title.id}`}>
-              <h6 className='PostList-card-title'>{title.title}</h6>
-            </Link>
-            <p className='PostList-card-description'><em>{title.description}</em></p>
-          </Card.Body>
-          <Card.Footer>
-            <small>{title.votes} votes</small>
-            <i className='fas fa-grin-stars text-warning ml-2'
-              onClick={() => this.vote('up', title.id)} />
-            <i className='fas fa-dizzy text-danger ml-2'
-              onClick={() => this.vote('down', title.id)} />
-          </Card.Footer>
-        </Card>
+          <Card id={title.id} className='PostList-card'>
+            <Card.Body>
+              <Link to={`/posts/${title.id}`}>
+                <h6 className='PostList-card-title'>{title.title}</h6>
+              </Link>
+              <p className='PostList-card-description'><em>{title.description}</em></p>
+            </Card.Body>
+            <Card.Footer>
+              <small>{title.votes} votes</small>
+              <i className='fas fa-grin-stars text-warning ml-2'
+                onClick={() => this.vote('up', title.id)} />
+              <i className='fas fa-dizzy text-danger ml-2'
+                onClick={() => this.vote('down', title.id)} />
+            </Card.Footer>
+          </Card>
         </div>
     );
 

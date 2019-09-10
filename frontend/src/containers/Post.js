@@ -117,7 +117,7 @@ class Post extends Component {
      * otherwise don't show edit form 
     */
     return (
-      <div>
+      <div className='container'>
         <PostTitle post={post}
           showEditForm={this.showEditForm}
           deletePost={this.handleDelete}
