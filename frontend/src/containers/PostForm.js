@@ -70,7 +70,7 @@ class PostForm extends Component {
   render() {
     return (
       <div className='PostForm'>
-        <h1>{this.props.formType}</h1>
+        <h3>{this.props.formType}</h3>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
             <Form.Label column sm={2}>Title</Form.Label>
@@ -108,14 +108,16 @@ class PostForm extends Component {
                 alt='body' rows='5' />
             </Col>
           </Form.Group>
-          <Button type='submit' variant='primary' size='md'>
+          <div className='row justify-content-end'>
+          <Button className='mr-2' type='submit' variant='dark'>
             Post
           </Button>
           <Link to='/'>
-            <Button variant='secondary' size='md'>
+              <Button className='mr-3' variant='danger'>
               Cancel
             </Button>
           </Link>
+          </div>
         </Form>
       </div>
     );

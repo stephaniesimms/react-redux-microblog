@@ -1,0 +1,14 @@
+.PostTitle {
+  position: relative;
+}
+
+.PostTitle-right {
+  position: absolute;
+  right: 0;
+  top: 1em;
+  text-align: right;
+}
+
+.PostTitle-right i {
+  margin-left: 1em;
+}

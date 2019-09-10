@@ -51,7 +51,7 @@ class PostList extends Component {
           </Card.Body>
           <Card.Footer>
             <small>{title.votes} votes</small>
-            <i className='fas fa-grin-stars text-success ml-2'
+            <i className='fas fa-grin-stars text-warning ml-2'
               onClick={() => this.vote('up', title.id)} />
             <i className='fas fa-dizzy text-danger ml-2'
               onClick={() => this.vote('down', title.id)} />

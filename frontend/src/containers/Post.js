@@ -123,19 +123,11 @@ class Post extends Component {
           deletePost={this.handleDelete}
           doVote={this.vote} />
 
-        {/* <h1>{title}</h1>
-        <p><em>{description}</em></p>
-        <p>{body}</p>
-        <Button onClick={this.showEditForm}>
-          <i className='far fa-edit'></i>
-        </Button>
-        <Button onClick={this.handleDelete}>
-          <i className='far fa-window-close'></i>
-        </Button> */}
-
         {this.state.editing ? editForm : null}
 
-        <section>
+        <section className='Post-comments'>
+          <hr></hr>
+          <h4>Comments</h4>
           <CommentList comments={post.comments}
             deleteComment={this.deleteComment}
             postId={post.id}

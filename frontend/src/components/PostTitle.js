@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './PostTitle.css';
 
 /** Display a post:
  *
@@ -28,41 +29,29 @@ class PostTitle extends Component {
     const { deletePost, post, showEditForm } = this.props;
 
     return (
-      <div>
-        <h1>{post.title}</h1>
+      <div className='PostTitle'>
+        <h3>{post.title}</h3>
         <p><em>{post.description}</em></p>
         <p>{post.body}</p>
 
-        <i className='fa fa-edit text-primary'
-          onClick={showEditForm} />
+        <div className='PostTitle-right'>
+          <i className='fa fa-edit text-info'
+            onClick={showEditForm} />
 
-        <i className='fa fa-times text-danger'
-          onClick={deletePost} />
+          <i className='fa fa-times text-danger'
+            onClick={deletePost} />
 
-        <div className="PostTitle-votes">
-          <b>votes: {post.votes}</b>
 
-          <i className="fas fa-grin-stars text-success"
-            onClick={this.doVoteUp} />
-          <i className="fas fa-dizzy text-danger"
-            onClick={this.doVoteDown} />
+          <div className="PostTitle-votes">
+            <b>votes: {post.votes}</b>
+
+            <i className="fas fa-grin-stars text-warning"
+              onClick={this.doVoteUp} />
+            <i className="fas fa-dizzy text-danger"
+              onClick={this.doVoteDown} />
+          </div>
         </div>
       </div>
-
-      //   <Card style={{ width: '40vw', display: 'inline-block', marginRight: '15px', maxWidth: '300px' }}>
-      //     <Link to={`/posts/${this.props.id}`}>
-      //       <Card.Title style={{ marginTop: '15px' }}>{this.props.title}</Card.Title>
-      //     </Link>
-
-      //     <Card.Body>{this.props.description}</Card.Body>
-      //     <div className="card-footer">
-      //       <small>{this.props.votes} votes</small>
-      //       <i className="fas fa-thumbs-up text-success ml-2"
-      //         onClick={() => this.props.doVote("up", this.props.id)} />
-      //       <i className="fas fa-thumbs-down text-danger ml-2"
-      //         onClick={() => this.props.doVote("down", this.props.id)} />
-      //     </div>
-      //   </Card>
     );
   }
 }
