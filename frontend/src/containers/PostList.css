@@ -1,16 +1,14 @@
 .PostList {
   margin: auto;
   max-width: 90%;
-  align-items: center;
 }
 
 .PostList-card {
-  display: inline-block;
+  display: flex;
   width: 40vw;
-  max-width: 50%;
-  margin-right: 1em;
+  margin: 1em 0 1em 0;
 }
 
 .PostList-card-title {
-  padding: 1em 0em 1em 0em;
+  padding: 1em 0 1em 0;
 }

@@ -42,7 +42,8 @@ class PostList extends Component {
 
     const titleList = this.props.titles.map(
       (title) =>
-        <Card key={title.id} id={title.id} className='PostList-card'>
+        <div className='col' key={title.id}>
+        <Card id={title.id} className='PostList-card'>
           <Card.Body>
             <Link to={`/posts/${title.id}`}>
               <h6 className='PostList-card-title'>{title.title}</h6>
@@ -57,10 +58,11 @@ class PostList extends Component {
               onClick={() => this.vote('down', title.id)} />
           </Card.Footer>
         </Card>
+        </div>
     );
 
     return (
-      <div className='PostList'>
+      <div className='row PostList'>
         {titleList}
       </div>
     );
