@@ -61,9 +61,9 @@ class Post extends Component {
 
   /** Handle post editing: adds to backend. */
 
-  async handleEdit(updatedPost) {
+  handleEdit(updatedPost) {
     const postId = this.props.match.params.postId;
-    await this.props.sendUpdateToAPI(updatedPost, postId);
+    this.props.sendUpdateToAPI(updatedPost, postId);
 
     this.setState({
       editing: false
@@ -106,15 +106,12 @@ class Post extends Component {
     }
 
     const editForm = <PostForm
-      formType='Edit'
       post={post}
       id={post.id}
-      updatePost={this.handleEdit}
+      save={this.handleEdit}
     />
 
-    /** Check if this.state editing is true
-     * if so set formType to handle data flow for editing a blog
-     * otherwise don't show edit form 
+    /** Check if this.state editing is true to show edit form
     */
     return (
       <div className='container'>

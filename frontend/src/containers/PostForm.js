@@ -5,12 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import './PostForm.css';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { sendPostToAPI } from '../actions/actions';
-
-// TODO: should PostForm be a component instead? 
-// maybe refactor to follow solution
-// otherwise update docstring
 
 /** Show post form.
  *
@@ -19,27 +13,19 @@ import { sendPostToAPI } from '../actions/actions';
  *
  */
 class PostForm extends Component {
+  static defaultProps = {
+    post: { title: "", description: "", body: "" },
+  };
+
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      description: '',
-      body: '',
+      title: this.props.post.title,
+      description: this.props.post.description,
+      body: this.props.post.body,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    if (this.props.post) {
-      const { title, description, body } = this.props.post;
-
-      this.setState({
-        title,
-        description,
-        body,
-      });
-    }
   }
 
   handleChange(evt) {
@@ -48,23 +34,9 @@ class PostForm extends Component {
     });
   };
 
-  /** Checks the formType prop sent from Post component to decide 
-   * whether to create a new post or edit an existing post
-  */
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault();
-
-    if (this.props.formType === 'Edit') {
-      this.props.updatePost({
-        ...this.state,
-        comments: this.props.post.comments
-      });
-    } else {
-      const { title, description, body } = this.state;
-      await this.props.sendPostToAPI({ title, description, body });
-
-      this.props.history.push('/');
-    }
+    this.props.save(this.state)
   };
 
   render() {
@@ -124,9 +96,4 @@ class PostForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { posts: state.posts };
-}
-
-
-export default connect(mapStateToProps, { sendPostToAPI })(PostForm);
+export default PostForm;
