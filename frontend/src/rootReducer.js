@@ -89,7 +89,10 @@ function rootReducer(state = DEFAULT_STATE, action) {
       
       return {
         ...state,
-        [action.postId]: { ...postCopy, votes: action.votes }
+        posts: {
+          ...postsCopy,
+          [action.postId]: { ...postCopy, votes: action.votes }
+        } 
       };
     }
 
