@@ -41,7 +41,7 @@ class Post extends Component {
 
   // Confirm the if statement below, loads post from redux state if available
   async componentDidMount() {
-    if (!this.props.post) {
+    if (!this.props.posts) {
       await this.props.getPostFromAPI(this.props.id);
     }
   }
