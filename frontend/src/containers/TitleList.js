@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import './PostList.css';
+import './TitleList.css';
 import {
   getPostsFromAPI,
   sendVoteToAPI
@@ -11,7 +11,7 @@ import {
 // FIXME: add sort to display posts by popularity
 
 /** Show list of blog titles, ordered by popularity. */
-class PostList extends Component {
+class TitleList extends Component {
 
   async componentDidMount() {
     await this.props.getPostsFromAPI();
@@ -44,12 +44,12 @@ class PostList extends Component {
     const titleList = sortedTitles.map(
       (title) =>
         <div className='col' key={title.id}>
-          <Card id={title.id} className='PostList-card'>
+          <Card id={title.id} className='TitleList-card'>
             <Card.Body>
               <Link to={`/posts/${title.id}`}>
-                <h6 className='PostList-card-title'>{title.title}</h6>
+                <h6 className='TitleList-card-title'>{title.title}</h6>
               </Link>
-              <p className='PostList-card-description'><em>{title.description}</em></p>
+              <p className='TitleList-card-description'><em>{title.description}</em></p>
             </Card.Body>
             <Card.Footer>
               <small>{title.votes} votes</small>
@@ -63,7 +63,7 @@ class PostList extends Component {
     );
 
     return (
-      <div className='PostList row'>
+      <div className='TitleList row'>
         {titleList}
       </div>
     );
@@ -83,4 +83,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   { getPostsFromAPI, sendVoteToAPI }
-)(PostList);
+)(TitleList);

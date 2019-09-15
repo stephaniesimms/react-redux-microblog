@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostForm from './PostForm';
-import PostTitle from '../components/PostTitle';
+import PostForm from '../components/PostForm';
+import PostDisplay from '../components/PostDisplay';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import {
@@ -115,7 +115,7 @@ class Post extends Component {
     */
     return (
       <div className='container'>
-        <PostTitle post={post}
+        <PostDisplay post={post}
           showEditForm={this.showEditForm}
           deletePost={this.handleDelete}
           doVote={this.vote} />
