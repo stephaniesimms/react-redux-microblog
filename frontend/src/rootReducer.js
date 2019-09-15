@@ -5,22 +5,27 @@ import {
   GET_POST,
   ADD_COMMENT,
   DELETE_COMMENT,
-  LOAD_TITLES,
+  LOAD_POSTS,
   SHOW_ERROR,
   VOTE
 } from './actions/actionTypes';
 
 const DEFAULT_STATE = {
-  posts: {},
-  titles: []
+  posts: {}
 }
 
 function rootReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
 
-    case LOAD_TITLES: {
-      const titles = action.titles;
-      return { ...state, titles };
+    // TODO: refactor this to loop through postList in helper function
+    case LOAD_POSTS: {
+      const postList = action.posts;
+      
+      const posts = {};
+      for (let post of postList) {
+        posts[post.id] = post;
+      }
+      return { ...state, posts };
     }
 
     case ADD_POST: {
@@ -46,10 +51,10 @@ function rootReducer(state = DEFAULT_STATE, action) {
     }
 
     case GET_POST: {
-      const postsCopy = { ...state.posts };
-      postsCopy[action.post.id] = action.post;
+      const post = {};
+      post[action.post.id] = action.post;
 
-      return { ...state, posts: postsCopy };
+      return { posts: post };
     }
 
     case ADD_COMMENT: {
