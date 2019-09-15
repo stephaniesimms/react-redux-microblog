@@ -21,12 +21,27 @@ class PostList extends Component {
     this.props.sendVoteToAPI(id, direction);
   }
 
+  // TODO: test, maybe this isn't necessary
+  // currently checking for tie and sort by unique id as tie-breaker
+  rankPosts(titleList) {
+    return titleList.sort((a, b) => {
+      if (b.votes === a.votes) {
+        return b.id < a.id;
+      }
+      else {
+        return b.votes - a.votes
+      }
+    });
+  }
+
   render() {
     // FIXME: check if this.props.posts object is empty
     // if (!this.props.titles) return <b>Loading...</b>;
     // console.log(this.props)
 
-    const titleList = this.props.titles.map(
+    const sortedTitles = this.rankPosts(this.props.titles);
+
+    const titleList = sortedTitles.map(
       (title) =>
         <div className='col' key={title.id}>
           <Card id={title.id} className='PostList-card'>
