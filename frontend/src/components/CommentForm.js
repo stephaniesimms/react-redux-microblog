@@ -45,7 +45,7 @@ class CommentForm extends Component {
                         alt='comment' />
         </Form.Group>
         <Button type='submit' 
-                variant='outline-dark' 
+                variant='dark' 
                 size='md'>
                 Add
         </Button>

@@ -4,6 +4,6 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const GET_POST = 'GET_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const LOAD_TITLES = 'LOAD_TITLES';
+export const LOAD_POSTS = 'LOAD_POSTS';
 export const VOTE = 'VOTE';
 export const SHOW_ERROR = 'SHOW_ERROR';

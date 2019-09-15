@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/Button';
 import PostForm from './PostForm';
+import PostTitle from '../components/PostTitle';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import {
@@ -11,7 +11,7 @@ import {
   sendVoteToAPI,
   sendCommentToAPI,
   deleteCommentFromAPI
-} from '../actions';
+} from '../actions/actions';
 
 /** Post:
  *
@@ -41,9 +41,8 @@ class Post extends Component {
 
   // Confirm the if statement below, loads post from redux state if available
   async componentDidMount() {
-    if (!this.props.post) {
+    if (!this.props.posts) {
       await this.props.getPostFromAPI(this.props.id);
-      // TODO: GET COMMENTS FOR POST
     }
   }
 
@@ -62,9 +61,9 @@ class Post extends Component {
 
   /** Handle post editing: adds to backend. */
 
-  async handleEdit(updatedPost) {
+  handleEdit(updatedPost) {
     const postId = this.props.match.params.postId;
-    await this.props.sendUpdateToAPI(updatedPost, postId);
+    this.props.sendUpdateToAPI(updatedPost, postId);
 
     this.setState({
       editing: false
@@ -100,42 +99,38 @@ class Post extends Component {
       return <p>Cannot find post</p>;
     }
 
-    if (!this.props.post) {
+    const post = this.props.post;
+
+    if (!post) {
       return 'Loading...';
     }
 
-    const post = this.props.post;
-    const { title, description, body, comments, id } = post;
-
     const editForm = <PostForm
-      formType='Edit'
       post={post}
-      id={id}
-      updatePost={this.handleEdit}
+      id={post.id}
+      save={this.handleEdit}
     />
 
-    // check if this.state editing is true
-    // if so set formType to handle data flow for editing a blog
-    // otherwise don't show edit form
+    /** Check if this.state editing is true to show edit form
+    */
     return (
-      <div>
-        <h1>{title}</h1>
-        <p><em>{description}</em></p>
-        <p>{body}</p>
-        <Button onClick={this.showEditForm}>
-          <i className='far fa-edit'></i>
-        </Button>
-        <Button onClick={this.handleDelete}>
-          <i className='far fa-window-close'></i>
-        </Button>
+      <div className='container'>
+        <PostTitle post={post}
+          showEditForm={this.showEditForm}
+          deletePost={this.handleDelete}
+          doVote={this.vote} />
 
         {this.state.editing ? editForm : null}
 
-        <CommentList comments={this.props.post.comments}
-          deleteComment={this.deleteComment}
-          postId={id}
-        />
-        <CommentForm submitCommentForm={this.addComment}/>
+        <section className='Post-comments'>
+          <hr></hr>
+          <h4>Comments</h4>
+          <CommentList comments={post.comments}
+            deleteComment={this.deleteComment}
+            postId={post.id}
+          />
+          <CommentForm submitCommentForm={this.addComment} />
+        </section>
       </div>
     );
   }
@@ -146,7 +141,6 @@ function mapDispatchToProps(state, props) {
   return {
     id,
     post: state.posts[id],
-    //comments
     error: state.error
   };
 }
@@ -159,6 +153,6 @@ export default connect(
     getPostFromAPI,
     sendCommentToAPI,
     deleteCommentFromAPI,
-    // sendVoteToAPI,
+    sendVoteToAPI,
   }
 )(Post);

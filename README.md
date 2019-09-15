@@ -14,7 +14,7 @@ cd backend
 npm install
 createdb microblog
 psql microblog < data.sql
-nodemon server.js 
+npm start 
 ```
 This will start the server on port 3001
 

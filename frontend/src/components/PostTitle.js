@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
+import './PostTitle.css';
 
 /** Display a post:
  *
@@ -8,15 +7,51 @@ import Card from 'react-bootstrap/Card';
  * - show vote count and +/- buttons (& call parent on action)
  *
  */
-class PostTitle extends Component {  
+
+//FIXME: rerender this component when user votes - sendVoteToAPI from here
+class PostTitle extends Component {
+  constructor(props) {
+    super(props);
+    this.doVoteUp = this.doVoteUp.bind(this);
+    this.doVoteDown = this.doVoteDown.bind(this);
+  }
+
+  doVoteUp() {
+    this.props.doVote('up');
+  }
+
+  doVoteDown() {
+    this.props.doVote('down');
+  }
+
   render() {
+    console.log('PostTitle props', this.props)
+    const { deletePost, post, showEditForm } = this.props;
+
     return (
-      <Card style={{ width: '40vw', display: 'inline-block', marginRight: '15px', maxWidth: '300px' }}>
-        <Link to={`/posts/${this.props.id}`}>
-          <Card.Title style={{ marginTop: '15px' }}>{this.props.title}</Card.Title>
-        </Link>
-        <Card.Body>{this.props.description}</Card.Body>
-      </Card>
+      <div className='PostTitle'>
+        <h3>{post.title}</h3>
+        <p><em>{post.description}</em></p>
+        <p>{post.body}</p>
+
+        <div className='PostTitle-right'>
+          <i className='fa fa-edit text-info'
+            onClick={showEditForm} />
+
+          <i className='fa fa-times text-danger'
+            onClick={deletePost} />
+
+
+          <div className="PostTitle-votes">
+            <b>votes: {post.votes}</b>
+
+            <i className="fas fa-grin-stars text-warning"
+              onClick={this.doVoteUp} />
+            <i className="fas fa-dizzy text-danger"
+              onClick={this.doVoteDown} />
+          </div>
+        </div>
+      </div>
     );
   }
 }
