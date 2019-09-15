@@ -6,22 +6,22 @@ import {
   GET_POST,
   ADD_COMMENT,
   DELETE_COMMENT,
-  LOAD_TITLES,
+  LOAD_POSTS,
   VOTE,
   SHOW_ERROR
 } from './actionTypes';
 
 const BASE_URL = 'http://localhost:5000/api/posts';
 
-export function getTitlesFromAPI() {
+export function getPostsFromAPI() {
   return async function (dispatch) {
     const res = await axios.get(`${BASE_URL}`);
-    dispatch(gotTitles(res.data));
+    dispatch(gotPosts(res.data));
   };
 }
 
-function gotTitles(titles) {
-  return { type: LOAD_TITLES, titles };
+function gotPosts(posts) {
+  return { type: LOAD_POSTS, posts };
 }
 
 /** Send POST object containing title, description, body from PostForm to backend
