@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, Jumbotron } from 'react-bootstrap';
 import './Navigation.css';
 
-/** Displays main nav and header with bad Rithm School pun 
+/** Displays main nav and header  
  * 
  * - nav links contain routes to:
- *   - new form
  *   - homepage
+ *   - new form
  *   - individual posts
 */
 class Navigation extends Component {
@@ -28,6 +28,5 @@ class Navigation extends Component {
     );
   }
 }
-
 
 export default Navigation;

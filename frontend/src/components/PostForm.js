@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Button, Form } from 'react-bootstrap';
 import './PostForm.css';
 import { Link } from 'react-router-dom';
 
 /** Show post form.
  *
- * Can be used for editing/adding --- it just calls the parent with edit
+ * Can be used for editing/adding --- it calls the parent with edit
  * or cancel actions.
  *
  */

@@ -11,8 +11,7 @@ class Comment extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDelete(evt) {
-    evt.preventDefault();
+  handleDelete() {
     this.props.triggerDelete(this.props.commentId);
   }
 

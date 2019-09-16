@@ -53,5 +53,4 @@ class PostDisplay extends Component {
   }
 }
 
-
 export default PostDisplay;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Button, Form } from 'react-bootstrap';
 
 /** Comment form
  *
@@ -10,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 class CommentForm extends Component {
   constructor(props) {
     super(props)
-    this.state = { 
+    this.state = {
       comment: ''
     };
 
@@ -36,18 +35,16 @@ class CommentForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
           <Form.Control id='comment'
-                        name='comment'
-                        onChange={this.handleChange}
-                        value={this.state.comment}
-                        placeholder='New Comment' 
-                        size='md' 
-                        type='text'
-                        alt='comment' />
+            name='comment'
+            onChange={this.handleChange}
+            value={this.state.comment}
+            placeholder='New Comment'
+            type='text'
+            alt='comment' />
         </Form.Group>
-        <Button type='submit' 
-                variant='dark' 
-                size='md'>
-                Add
+        <Button type='submit'
+          variant='dark' >
+          Add
         </Button>
       </Form>
     );

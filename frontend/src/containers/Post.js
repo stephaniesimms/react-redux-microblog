@@ -16,7 +16,7 @@ import {
 /** Post:
  *
  * - get post data from API, if not present
- * - allows post to be edited (toggleEdit is local state for this)
+ * - allows post to be edited (showEditForm is local state for this)
  * - handles edit form submission
  * - handles add-comment form submission
  * - handles comment-deletion
@@ -39,13 +39,13 @@ class Post extends Component {
 
   /** If we don't have the post, request it from API. */
 
-  // Confirm the if statement below, loads post from redux state if available
   async componentDidMount() {
     if (!this.props.posts) {
       await this.props.getPostFromAPI(this.props.id);
     }
   }
 
+  /** Toggle state of editing true/false to show or hide post edit form */
   showEditForm() {
     this.setState( state => ({ editing: !state.editing }));
   }
@@ -88,9 +88,9 @@ class Post extends Component {
 
   /** Render:
    *
-   * - if not post yet, a loading message
-   * - if editing, the edit form & comments
-   * - if not, the display & comments
+   * - if not post yet, show a loading message
+   * - if editing, show the edit form & comments
+   * - if not, show the post & comments
    */
   render() {
     if (this.props.error) {
@@ -103,8 +103,6 @@ class Post extends Component {
       return 'Loading...';
     }
 
-    /** Check if this.state editing is true to show edit form
-    */
     return (
       <div className='container'>
   

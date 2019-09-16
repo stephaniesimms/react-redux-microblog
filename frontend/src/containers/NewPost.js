@@ -12,7 +12,6 @@ class NewPost extends Component {
     this.cancel = this.cancel.bind(this);
   }
 
-
   /** Handle new post: adds to backend. */
 
   handleSubmit({ title, description, body }) {

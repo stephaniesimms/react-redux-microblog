@@ -8,9 +8,9 @@ import {
   sendVoteToAPI
 } from '../actions/actions';
 
-// FIXME: add sort to display posts by popularity
-
-/** Show list of blog titles, ordered by popularity. */
+/** Show list of blog titles, ordered by popularity.
+ *  Allow up- and down-voting in the main list & for individual posts
+ */
 class TitleList extends Component {
 
   async componentDidMount() {
