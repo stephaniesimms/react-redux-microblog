@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PostTitle.css';
+import './PostDisplay.css';
 
 /** Display a post:
  *
@@ -7,9 +7,7 @@ import './PostTitle.css';
  * - show vote count and +/- buttons (& call parent on action)
  *
  */
-
-//FIXME: rerender this component when user votes - sendVoteToAPI from here
-class PostTitle extends Component {
+class PostDisplay extends Component {
   constructor(props) {
     super(props);
     this.doVoteUp = this.doVoteUp.bind(this);
@@ -25,16 +23,15 @@ class PostTitle extends Component {
   }
 
   render() {
-    console.log('PostTitle props', this.props)
     const { deletePost, post, showEditForm } = this.props;
 
     return (
-      <div className='PostTitle'>
+      <div className='PostDisplay'>
         <h3>{post.title}</h3>
         <p><em>{post.description}</em></p>
         <p>{post.body}</p>
 
-        <div className='PostTitle-right'>
+        <div className='PostDisplay-right'>
           <i className='fa fa-edit text-info'
             onClick={showEditForm} />
 
@@ -42,7 +39,7 @@ class PostTitle extends Component {
             onClick={deletePost} />
 
 
-          <div className="PostTitle-votes">
+          <div className="PostDisplay-votes">
             <b>votes: {post.votes}</b>
 
             <i className="fas fa-grin-stars text-warning"
@@ -57,4 +54,4 @@ class PostTitle extends Component {
 }
 
 
-export default PostTitle;
+export default PostDisplay;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostForm from './PostForm';
-import PostTitle from '../components/PostTitle';
+import PostForm from '../components/PostForm';
+import PostDisplay from '../components/PostDisplay';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import {
@@ -47,7 +47,7 @@ class Post extends Component {
   }
 
   showEditForm() {
-    this.setState({ editing: true });
+    this.setState( state => ({ editing: !state.editing }));
   }
 
   /** Handle post deletion: deletes from backend. */
@@ -65,9 +65,7 @@ class Post extends Component {
     const postId = this.props.match.params.postId;
     this.props.sendUpdateToAPI(updatedPost, postId);
 
-    this.setState({
-      editing: false
-    });
+    this.showEditForm();
   }
 
   /** Handle adding a comment: adds to backend. */
@@ -105,22 +103,20 @@ class Post extends Component {
       return 'Loading...';
     }
 
-    const editForm = <PostForm
-      post={post}
-      id={post.id}
-      save={this.handleEdit}
-    />
-
     /** Check if this.state editing is true to show edit form
     */
     return (
       <div className='container'>
-        <PostTitle post={post}
+  
+        {this.state.editing 
+          ? <PostForm post={post} 
+            id={post.id} 
+            save={this.handleEdit}
+            />
+          : <PostDisplay post={post}
           showEditForm={this.showEditForm}
           deletePost={this.handleDelete}
-          doVote={this.vote} />
-
-        {this.state.editing ? editForm : null}
+          doVote={this.vote} />}
 
         <section className='Post-comments'>
           <hr></hr>

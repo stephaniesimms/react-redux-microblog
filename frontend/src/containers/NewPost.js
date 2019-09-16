@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostForm from './PostForm';
+import PostForm from '../components/PostForm';
 import {
   sendPostToAPI,
 } from '../actions/actions';
@@ -16,7 +16,7 @@ class NewPost extends Component {
   /** Handle new post: adds to backend. */
 
   handleSubmit({ title, description, body }) {
-    this.props.sendPostToAPI({title, description, body });
+    this.props.sendPostToAPI({ title, description, body });
     this.props.history.push('/');
   }
 
@@ -29,6 +29,7 @@ class NewPost extends Component {
   render() {
     return (
       <div>
+        <h3>New Post</h3>
         <PostForm
           save={this.handleSubmit}
         />
@@ -39,8 +40,5 @@ class NewPost extends Component {
 
 
 export default connect(
-  null,
-  {
-    sendPostToAPI,
-  }
+  null, { sendPostToAPI }
 )(NewPost);

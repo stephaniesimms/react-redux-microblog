@@ -1,14 +1,14 @@
-.PostList {
+.TitleList {
   margin: auto;
   max-width: 90%;
 }
 
-.PostList-card {
+.TitleList-card {
   display: flex;
   width: 40vw;
   margin: 1em 0 1em 0;
 }
 
-.PostList-card-title {
+.TitleList-card-title {
   padding: 1em 0 1em 0;
 }
