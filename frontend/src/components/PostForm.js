@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import './PostForm.css';
 import { Link } from 'react-router-dom';
 
@@ -40,9 +39,9 @@ class PostForm extends Component {
 
   render() {
     return (
-      <div className='PostForm px-5 py-3'>
+      <div className='PostForm p-3'>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group as={Row}>
+          <Form.Group>
             <Form.Label>Title</Form.Label>
             <Form.Control id='PostForm-title'
               name='title'
@@ -51,7 +50,7 @@ class PostForm extends Component {
               type='text'
               alt='title' />
           </Form.Group>
-          <Form.Group as={Row}>
+          <Form.Group>
             <Form.Label>Description</Form.Label>
             <Form.Control id='PostForm-description'
               name='description'
@@ -60,7 +59,7 @@ class PostForm extends Component {
               type='text'
               alt='description' />
           </Form.Group>
-          <Form.Group as={Row}>
+          <Form.Group>
             <Form.Label>Body</Form.Label>
             <Form.Control id='PostForm-body'
               name='body'
@@ -77,7 +76,8 @@ class PostForm extends Component {
               Post
           </Button>
             <Link to='/'>
-              <Button variant='danger'>
+              <Button className='mr-3' 
+                variant='danger'>
                 Cancel
             </Button>
             </Link>
