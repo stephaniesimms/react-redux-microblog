@@ -45,7 +45,7 @@ function rootReducer(state = DEFAULT_STATE, action) {
 
     case UPDATE_POST: {
       const postsCopy = { ...state.posts };
-      postsCopy[action.id] = action.post;
+      postsCopy[action.id] = { ...postsCopy[action.id], ...action.post};
 
       return { ...state, posts: postsCopy };
     }

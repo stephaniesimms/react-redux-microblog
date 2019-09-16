@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
 import './PostForm.css';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ import { Link } from 'react-router-dom';
  */
 class PostForm extends Component {
   static defaultProps = {
-    post: { title: "", description: "", body: "" },
+    post: { title: '', description: '', body: '' },
   };
 
   constructor(props) {
@@ -42,53 +41,47 @@ class PostForm extends Component {
   render() {
     return (
       <div className='PostForm'>
-        <h3>{this.props.formType}</h3>
+        {/* <h3>{this.props.formType}</h3> */}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
-            <Form.Label column sm={2}>Title</Form.Label>
-            <Col sm={10}>
-              <Form.Control id='title'
-                name='title'
-                onChange={this.handleChange}
-                value={this.state.title}
-                size='md'
-                type='text'
-                alt='title' />
-            </Col>
+            <Form.Label>Title</Form.Label>
+            <Form.Control id='PostForm-title'
+              name='title'
+              onChange={this.handleChange}
+              value={this.state.title}
+              type='text'
+              alt='title' />
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm={2}>Description</Form.Label>
-            <Col sm={10}>
-              <Form.Control id='description'
-                name='description'
-                onChange={this.handleChange}
-                value={this.state.description}
-                size='md'
-                type='text'
-                alt='description' />
-            </Col>
+            <Form.Label>Description</Form.Label>
+            <Form.Control id='PostForm-description'
+              name='description'
+              onChange={this.handleChange}
+              value={this.state.description}
+              type='text'
+              alt='description' />
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm={2}>Body</Form.Label>
-            <Col sm={10}>
-              <Form.Control id='body'
-                name='body'
-                onChange={this.handleChange}
-                value={this.state.body}
-                size='md'
-                as='textarea'
-                alt='body' rows='5' />
-            </Col>
+            <Form.Label>Body</Form.Label>
+            <Form.Control id='PostForm-body'
+              name='body'
+              onChange={this.handleChange}
+              value={this.state.body}
+              as='textarea'
+              alt='body'
+              rows='10' />
           </Form.Group>
           <div className='row justify-content-end'>
-          <Button className='mr-2' type='submit' variant='dark'>
-            Post
+            <Button className='mr-2'
+              type='submit'
+              variant='dark'>
+              Post
           </Button>
-          <Link to='/'>
-              <Button className='mr-3' variant='danger'>
-              Cancel
+            <Link to='/'>
+              <Button variant='danger'>
+                Cancel
             </Button>
-          </Link>
+            </Link>
           </div>
         </Form>
       </div>

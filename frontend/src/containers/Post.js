@@ -47,7 +47,7 @@ class Post extends Component {
   }
 
   showEditForm() {
-    this.setState({ editing: true });
+    this.setState( state => ({ editing: !state.editing }));
   }
 
   /** Handle post deletion: deletes from backend. */
@@ -65,9 +65,7 @@ class Post extends Component {
     const postId = this.props.match.params.postId;
     this.props.sendUpdateToAPI(updatedPost, postId);
 
-    this.setState({
-      editing: false
-    });
+    this.showEditForm();
   }
 
   /** Handle adding a comment: adds to backend. */
@@ -104,23 +102,22 @@ class Post extends Component {
     if (!post) {
       return 'Loading...';
     }
-
-    const editForm = <PostForm
-      post={post}
-      id={post.id}
-      save={this.handleEdit}
-    />
+    console.log("Post render this.props", this.props)
 
     /** Check if this.state editing is true to show edit form
     */
     return (
       <div className='container'>
-        <PostDisplay post={post}
+  
+        {this.state.editing 
+          ? <PostForm post={post} 
+            id={post.id} 
+            save={this.handleEdit}
+            />
+          : <PostDisplay post={post}
           showEditForm={this.showEditForm}
           deletePost={this.handleDelete}
-          doVote={this.vote} />
-
-        {this.state.editing ? editForm : null}
+          doVote={this.vote} />}
 
         <section className='Post-comments'>
           <hr></hr>

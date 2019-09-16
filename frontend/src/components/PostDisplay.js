@@ -7,8 +7,6 @@ import './PostDisplay.css';
  * - show vote count and +/- buttons (& call parent on action)
  *
  */
-
-//FIXME: rerender this component when user votes - sendVoteToAPI from here
 class PostDisplay extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +23,6 @@ class PostDisplay extends Component {
   }
 
   render() {
-    console.log('PostDisplay props', this.props)
     const { deletePost, post, showEditForm } = this.props;
 
     return (
