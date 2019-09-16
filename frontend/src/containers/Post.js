@@ -102,7 +102,6 @@ class Post extends Component {
     if (!post) {
       return 'Loading...';
     }
-    console.log("Post render this.props", this.props)
 
     /** Check if this.state editing is true to show edit form
     */

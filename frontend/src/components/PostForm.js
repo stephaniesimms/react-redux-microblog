@@ -40,8 +40,7 @@ class PostForm extends Component {
 
   render() {
     return (
-      <div className='PostForm'>
-        {/* <h3>{this.props.formType}</h3> */}
+      <div className='PostForm px-5 py-3'>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
             <Form.Label>Title</Form.Label>
