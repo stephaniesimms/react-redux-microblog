@@ -116,9 +116,9 @@ class Post extends Component {
           deletePost={this.handleDelete}
           doVote={this.vote} />}
 
-        <section className='Post-comments'>
+        <section c>
           <hr></hr>
-          <h4>Comments</h4>
+          <h4 className="mb-3">Comments</h4>
           <CommentList comments={post.comments}
             deleteComment={this.deleteComment}
             postId={post.id}

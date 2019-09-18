@@ -6,7 +6,9 @@ class Homepage extends Component {
   render() {
     return (
       <main>
-        <p>Welcome to <b>Microblog</b>, a fake forum for heavy metal-themed culinary delights. Vote for the posts you deem the most/least diabolical. Add new recipes and other content. Leave comments. 
+        <p>Welcome to <b>Microblog</b>, a fake forum for heavy metal-themed
+        culinary delights. Vote for the posts you deem the most/least
+        diabolical. Add new recipes and other content. Leave comments.
         </p>
         <TitleList />
       </main>

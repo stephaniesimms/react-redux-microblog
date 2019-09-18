@@ -44,7 +44,7 @@ class TitleList extends Component {
               <Link to={`/posts/${title.id}`}>
                 <h6 className='TitleList-card-title'>{title.title}</h6>
               </Link>
-              <p><em>{title.description}</em></p>
+              <p>{title.description}</p>
             </Card.Body>
 
             <Card.Footer>
