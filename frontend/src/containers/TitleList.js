@@ -21,36 +21,32 @@ class TitleList extends Component {
     this.props.sendVoteToAPI(id, direction);
   }
 
-  // TODO: test, maybe this isn't necessary
-  // currently checking for tie and sort by unique id as tie-breaker
+ /** Display blog posts by highest to lowest number of votes 
+  * NOTE: This method becomes inefficient at scale.
+  * One alternative approach is to sort in Redux.
+ */
   rankPosts(titleList) {
-    return titleList.sort((a, b) => {
-      if (b.votes === a.votes) {
-        return b.id < a.id;
-      }
-      else {
-        return b.votes - a.votes
-      }
-    });
+    return titleList.sort((a, b) => b.votes - a.votes); 
   }
 
   render() {
-    // FIXME: check if this.props.posts object is empty
-    // if (!this.props.titles) return <b>Loading...</b>;
-    // console.log(this.props)
+    if (Object.keys(this.props.titles).length === 0) {
+      return <b>Loading...</b>;
+    }
 
     const sortedTitles = this.rankPosts(this.props.titles);
 
     const titleList = sortedTitles.map(
       (title) =>
-        <div className='col' key={title.id}>
+        <div key={title.id} className='col-sm-6'>
           <Card id={title.id} className='TitleList-card'>
             <Card.Body>
               <Link to={`/posts/${title.id}`}>
                 <h6 className='TitleList-card-title'>{title.title}</h6>
               </Link>
-              <p className='TitleList-card-description'><em>{title.description}</em></p>
+              <p><em>{title.description}</em></p>
             </Card.Body>
+
             <Card.Footer>
               <small>{title.votes} votes</small>
               <i className='fas fa-grin-stars text-warning ml-2'
@@ -63,7 +59,7 @@ class TitleList extends Component {
     );
 
     return (
-      <div className='TitleList row'>
+      <div className='row'>
         {titleList}
       </div>
     );

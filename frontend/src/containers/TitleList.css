@@ -1,11 +1,4 @@
-.TitleList {
-  margin: auto;
-  max-width: 90%;
-}
-
 .TitleList-card {
-  display: flex;
-  width: 40vw;
   margin: 1em 0 1em 0;
 }
 
