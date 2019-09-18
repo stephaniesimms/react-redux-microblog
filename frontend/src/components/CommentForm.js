@@ -38,7 +38,7 @@ class CommentForm extends Component {
             name='comment'
             onChange={this.handleChange}
             value={this.state.comment}
-            placeholder='New Comment'
+            placeholder='New comment'
             type='text'
             alt='comment' />
         </Form.Group>

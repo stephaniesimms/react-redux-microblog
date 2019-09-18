@@ -104,7 +104,7 @@ class Post extends Component {
     }
 
     return (
-      <div className='container'>
+      <div className='container-fluid'>
   
         {this.state.editing 
           ? <PostForm post={post} 
