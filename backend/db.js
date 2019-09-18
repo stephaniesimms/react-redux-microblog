@@ -6,5 +6,4 @@ const client = new Client(process.env.DATABASE_URL || "postgresql:///microblog")
 
 client.connect();
 
-
 module.exports = client;

@@ -59,7 +59,6 @@ router.put("/:id", async function (req, res, next) {
   }
 });
 
-
 /** DELETE /[id] delete comment
  *
  * => { message: "deleted" }

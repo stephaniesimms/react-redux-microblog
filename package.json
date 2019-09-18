@@ -1,0 +1,19 @@
+{
+  "name": "react-redux-microblog",
+  "version": "1.0.0",
+  "description": "A blogging app built with React and Redux. Backend code in Express and Postgres provided by [Rithm School](https://www.rithmschool.com/). Pair programmed with [Hekmat Kudrat](https://github.com/hekmatkudrat).",
+  "main": "backend/server.js",
+  "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephaniesimms/react-redux-microblog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephaniesimms/react-redux-microblog/issues"
+  },
+  "homepage": "https://github.com/stephaniesimms/react-redux-microblog#readme"
+}
