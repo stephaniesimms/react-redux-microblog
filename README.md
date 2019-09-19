@@ -48,7 +48,7 @@ npm test
 ```
 App
 ├─┬ components/Home
-│ └── components/TitleList
+│ └── containers/TitleList
 ├─┬ containers/NewPost
 │ └── components/PostForm
 └─┬ containers/Post
