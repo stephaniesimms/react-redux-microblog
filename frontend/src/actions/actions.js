@@ -11,11 +11,12 @@ import {
   SHOW_ERROR
 } from './actionTypes';
 
-const BASE_URL = 'http://localhost:5000/api/posts';
+const BASE_URL = process.env.PUBLIC_URL || 'http://localhost:5000';
+const API_URL = `${BASE_URL}/api/posts`;
 
 export function getPostsFromAPI() {
   return async function (dispatch) {
-    const res = await axios.get(`${BASE_URL}`);
+    const res = await axios.get(API_URL);
     dispatch(gotPosts(res.data));
   };
 }
@@ -28,7 +29,7 @@ function gotPosts(posts) {
 {title, description, body} */
 export function sendPostToAPI(post) {
   return async function (dispatch) {
-    const res = await axios.post(BASE_URL, post);
+    const res = await axios.post(API_URL, post);
     dispatch(addPost(res.data));
   };
 }
@@ -43,7 +44,7 @@ function addPost(post) {
 export function getPostFromAPI(id) {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${BASE_URL}/${id}`);
+      const res = await axios.get(`${API_URL}/${id}`);
       if (res.data === '') {
         throw new Error('Cannot find post');
       }
@@ -63,7 +64,7 @@ function getPost(post) {
 
 export function sendDeleteToAPI(id) {
   return async function (dispatch) {
-    await axios.delete(`${BASE_URL}/${id}`);
+    await axios.delete(`${API_URL}/${id}`);
     dispatch(deletePost(id));
   };
 }
@@ -77,7 +78,7 @@ function deletePost(id) {
 
 export function sendUpdateToAPI(post, id) {
   return async function (dispatch) {
-    await axios.put(`${BASE_URL}/${id}`, post);
+    await axios.put(`${API_URL}/${id}`, post);
     dispatch(updatePost(post, id));
   };
 }
@@ -92,7 +93,7 @@ function updatePost(post, id) {
 
 export function sendCommentToAPI(postId, comment) {
   return async function (dispatch) {
-    const result = await axios.post(`${BASE_URL}/${postId}/comments/`, { comment });
+    const result = await axios.post(`${API_URL}/${postId}/comments/`, { comment });
     return dispatch(addComment(postId, result.data));
   };
 }
@@ -107,7 +108,7 @@ function addComment(postId, comment) {
 
 export function deleteCommentFromAPI(postId, commentId) {
   return async function (dispatch) {
-    await axios.delete(`${BASE_URL}/${postId}/comments/${commentId}`);
+    await axios.delete(`${API_URL}/${postId}/comments/${commentId}`);
     return dispatch(deleteComment(postId, commentId));
   };
 }
@@ -122,7 +123,7 @@ function deleteComment(postId, commentId) {
 
 export function sendVoteToAPI(id, direction) {
   return async function (dispatch) {
-    const response = await axios.post(`${BASE_URL}/${id}/vote/${direction}`);
+    const response = await axios.post(`${API_URL}/${id}/vote/${direction}`);
     return dispatch(vote(id, response.data.votes));
   };
 }

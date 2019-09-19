@@ -11,8 +11,10 @@ const app = express();
 
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+// tells the Node backend to serve compiled FE code as static resource
+app.use(express.static('../frontend/build'));
 
 app.use("/api/posts/:post_id/comments", postCommentsRoutes);
 app.use("/api/posts", postsRoutes);
@@ -35,6 +37,10 @@ app.use(function (err, req, res, next) {
     message: err.message,
   });
 });
+// console.log(__dirname)
+// app.get('/*', function (req, res) {
+//   res.sendFile(path.join('../frontend/build', 'index.html'));
+// });
 
 
 module.exports = app;

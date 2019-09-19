@@ -4,16 +4,20 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 
+// this is necessary for prod deployment to work on browser with no Redux Dev Tool
+const composeEnhancers = composeWithDevTools({
+  // options like actionSanitizer, stateSanitizer
+});
+
 const store = createStore(
   rootReducer,
-  compose(
+  composeEnhancers(
     applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__
-    && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
