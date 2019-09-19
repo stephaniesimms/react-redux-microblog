@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Form
+  inline={false}
+  onSubmit={[Function]}
+>
+  <FormGroup>
+    <FormControl
+      alt="comment"
+      id="comment"
+      name="comment"
+      onChange={[Function]}
+      placeholder="New comment"
+      type="text"
+      value=""
+    />
+  </FormGroup>
+  <Button
+    active={false}
+    disabled={false}
+    type="submit"
+    variant="dark"
+  >
+    Add
+  </Button>
+</Form>
+`;

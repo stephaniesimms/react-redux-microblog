@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="PostForm p-3"
+>
+  <Form
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <FormGroup>
+      <FormLabel
+        column={false}
+        srOnly={false}
+      >
+        Title
+      </FormLabel>
+      <FormControl
+        alt="title"
+        id="PostForm-title"
+        name="title"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </FormGroup>
+    <FormGroup>
+      <FormLabel
+        column={false}
+        srOnly={false}
+      >
+        Description
+      </FormLabel>
+      <FormControl
+        alt="description"
+        id="PostForm-description"
+        name="description"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </FormGroup>
+    <FormGroup>
+      <FormLabel
+        column={false}
+        srOnly={false}
+      >
+        Body
+      </FormLabel>
+      <FormControl
+        alt="body"
+        as="textarea"
+        id="PostForm-body"
+        name="body"
+        onChange={[Function]}
+        rows="10"
+        value=""
+      />
+    </FormGroup>
+    <div
+      className="row justify-content-end"
+    >
+      <Button
+        active={false}
+        className="mr-2"
+        disabled={false}
+        type="submit"
+        variant="dark"
+      >
+        Post
+      </Button>
+      <Link
+        to="/"
+      >
+        <Button
+          active={false}
+          className="mr-3"
+          disabled={false}
+          type="button"
+          variant="danger"
+        >
+          Cancel
+        </Button>
+      </Link>
+    </div>
+  </Form>
+</div>
+`;

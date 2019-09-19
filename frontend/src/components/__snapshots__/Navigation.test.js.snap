@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Bootstrap(Jumbotron)
+  className="Jumbotron"
+>
+  <div
+    className="ml-3"
+  >
+    <h1>
+      Microblog
+    </h1>
+    <p
+      className="lead"
+    >
+      Cooking with hellfire
+    </p>
+  </div>
+  <Bootstrap(undefined)>
+    <Nav
+      fill={false}
+      justify={false}
+    >
+      <NavLink
+        exact={true}
+        to="/"
+      >
+        Blog
+      </NavLink>
+      <NavLink
+        exact={true}
+        to="/new"
+      >
+        Add a new post
+      </NavLink>
+    </Nav>
+  </Bootstrap(undefined)>
+</Bootstrap(Jumbotron)>
+`;
