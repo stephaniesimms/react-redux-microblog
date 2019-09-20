@@ -1,10 +1,10 @@
 # Microblog
 
-A blogging app built with React and Redux. Backend code in Express and Postgres provided by [Rithm School](https://www.rithmschool.com/). Pair programmed with [Hekmat Kudrat](https://github.com/hekmatkudrat).
-
-Incorporates Redux-Thunk to handle asychronous actions that deal with AJAX calls and dispatch actions with the data returned.
+A blogging app built with React and Redux. Incorporates Redux-Thunk to handle asychronous actions and React Router for client-side routing.
 
 Check out the live deployment: https://stephaniesimms-microblog.herokuapp.com/
+
+Backend code in Express and Postgres provided by [Rithm School](https://www.rithmschool.com/). Pair programmed with [Hekmat Kudrat](https://github.com/hekmatkudrat).
 
 ## Installation
 
