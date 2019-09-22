@@ -14,6 +14,13 @@ import {
 const BASE_URL = process.env.PUBLIC_URL || 'http://localhost:5000';
 const API_URL = `${BASE_URL}/api/posts`;
 
+function showErr(msg) {
+  return { 
+    type: SHOW_ERROR, 
+    msg 
+  };
+}
+
 export function getPostsFromAPI() {
   return async function (dispatch) {
     const res = await axios.get(API_URL);
@@ -22,7 +29,10 @@ export function getPostsFromAPI() {
 }
 
 function gotPosts(posts) {
-  return { type: LOAD_POSTS, posts };
+  return { 
+    type: LOAD_POSTS, 
+    posts 
+  };
 }
 
 /** Send POST object containing title, description, body from PostForm to backend
@@ -134,8 +144,4 @@ function vote(postId, votes) {
     postId: postId,
     votes: votes,
   };
-}
-
-function showErr(msg) {
-  return { type: SHOW_ERROR, msg };
 }
