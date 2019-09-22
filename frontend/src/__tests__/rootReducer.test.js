@@ -271,7 +271,6 @@ describe('rootReducer ADD_COMMENT', () => {
   });
 
   it('should add a comment', () => {
-    // console.log(state, action)
     expect(rootReducer(state, action)).toEqual({
       posts: {
         10: {
@@ -290,8 +289,79 @@ describe('rootReducer ADD_COMMENT', () => {
     });
   });
 
-  xit('should be a pure function', () => {
+  it('should be a pure function', () => {
     rootReducer(state, action);
-    expect(state).toEqual({ posts: {} });
+    expect(state).toEqual({ 
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          comments: []
+        }
+      }
+    });
+  });
+});
+
+
+describe('rootReducer DELETE_COMMENT', () => {
+  beforeEach(() => {
+    action = {
+      type: DELETE_COMMENT,
+      postId: 10,
+      commentId: 1
+    }
+    state = {
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          comments: [
+            {
+              id: 1,
+              comment: 'Test comment',
+            }
+          ]
+        }
+      }
+    }
+  });
+
+  it('should delete a comment', () => {
+    expect(rootReducer(state, action)).toEqual({
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          comments: []
+        }
+      }
+    });
+  });
+
+  it('should be a pure function', () => {
+    rootReducer(state, action);
+    expect(state).toEqual({
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          comments: [
+            {
+              id: 1,
+              comment: 'Test comment',
+            }
+          ]
+        }
+      }
+    });
   });
 });
