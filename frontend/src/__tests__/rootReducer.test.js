@@ -34,7 +34,9 @@ describe('rootReducer ADD_POST', () => {
         comments: []
       }
     }
-    state = { posts: {} }
+    state = {
+      posts: {}
+    }
   });
 
   it('should add a post to state.posts', () => {
@@ -168,7 +170,7 @@ describe('rootReducer GET_POST', () => {
     }
   });
 
-  it('should get a post using from the backend using the post id', () => {
+  it('should get a post from the backend using the post id', () => {
     expect(rootReducer(state, action)).toEqual({
       posts: {
         10: {
@@ -264,13 +266,14 @@ describe('rootReducer ADD_COMMENT', () => {
           title: 'Test title',
           description: 'Test description',
           body: 'Test body',
+          votes: 3,
           comments: []
         }
       }
     }
   });
 
-  it('should add a comment', () => {
+  it('should add a comment to a post using the post id', () => {
     expect(rootReducer(state, action)).toEqual({
       posts: {
         10: {
@@ -278,8 +281,9 @@ describe('rootReducer ADD_COMMENT', () => {
           title: 'Test title',
           description: 'Test description',
           body: 'Test body',
+          votes: 3,
           comments: [
-            { 
+            {
               commentId: 1,
               comment: 'Test comment',
             }
@@ -291,13 +295,14 @@ describe('rootReducer ADD_COMMENT', () => {
 
   it('should be a pure function', () => {
     rootReducer(state, action);
-    expect(state).toEqual({ 
+    expect(state).toEqual({
       posts: {
         10: {
           id: 10,
           title: 'Test title',
           description: 'Test description',
           body: 'Test body',
+          votes: 3,
           comments: []
         }
       }
@@ -320,6 +325,7 @@ describe('rootReducer DELETE_COMMENT', () => {
           title: 'Test title',
           description: 'Test description',
           body: 'Test body',
+          votes: 3,
           comments: [
             {
               id: 1,
@@ -339,6 +345,7 @@ describe('rootReducer DELETE_COMMENT', () => {
           title: 'Test title',
           description: 'Test description',
           body: 'Test body',
+          votes: 3,
           comments: []
         }
       }
@@ -354,12 +361,67 @@ describe('rootReducer DELETE_COMMENT', () => {
           title: 'Test title',
           description: 'Test description',
           body: 'Test body',
+          votes: 3,
           comments: [
             {
               id: 1,
               comment: 'Test comment',
             }
           ]
+        }
+      }
+    });
+  });
+});
+
+
+describe('rootReducer VOTE', () => {
+  beforeEach(() => {
+    action = {
+      type: VOTE,
+      postId: 10,
+      votes: 1
+    }
+    state = {
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          votes: 0,
+          comments: []
+        }
+      }
+    }
+  });
+
+  it('should update the total number of votes', () => {
+    expect(rootReducer(state, action)).toEqual({
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          votes: 1,
+          comments: []
+        }
+      }
+    });
+  });
+
+  it('should be a pure function', () => {
+    rootReducer(state, action);
+    expect(state).toEqual({
+      posts: {
+        10: {
+          id: 10,
+          title: 'Test title',
+          description: 'Test description',
+          body: 'Test body',
+          votes: 0,
+          comments: []
         }
       }
     });
