@@ -8,7 +8,6 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   VOTE,
-  SHOW_ERROR
 } from '../actions/actionTypes';
 
 describe('post actions', () => {

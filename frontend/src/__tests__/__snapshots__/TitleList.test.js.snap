@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-6"
+    key="1"
+  >
+    <Card
+      body={false}
+      className="TitleList-card"
+      id={1}
+    >
+      <CardBody>
+        <Link
+          to="/posts/1"
+        >
+          <h6
+            className="TitleList-card-title"
+          >
+            test title
+          </h6>
+        </Link>
+        <p>
+          test description
+        </p>
+      </CardBody>
+      <CardFooter>
+        <small>
+          2
+           votes
+        </small>
+        <i
+          className="fas fa-grin-stars text-warning ml-2"
+          onClick={[Function]}
+        />
+        <i
+          className="fas fa-dizzy text-danger ml-2"
+          onClick={[Function]}
+        />
+      </CardFooter>
+    </Card>
+  </div>
+</div>
+`;
