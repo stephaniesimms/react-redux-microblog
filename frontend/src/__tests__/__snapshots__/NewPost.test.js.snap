@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <h3>
+    New Post
+  </h3>
+  <PostForm
+    post={
+      Object {
+        "body": "",
+        "description": "",
+        "title": "",
+      }
+    }
+    save={[Function]}
+  />
+</div>
+`;

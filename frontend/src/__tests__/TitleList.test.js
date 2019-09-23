@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import PostDisplay from '../components/PostDisplay';
+import { TitleList } from '../containers/TitleList';
 
 xit('renders without crashing', function () {
-  shallow(<PostDisplay />);
+  shallow(<TitleList />);
 });
 
 xit('matches snapshot', function () {
-  let wrapper = shallow(<PostDisplay />);
+  let wrapper = shallow(<TitleList />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });

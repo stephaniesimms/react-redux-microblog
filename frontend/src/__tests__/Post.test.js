@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import CommentForm from '../components/CommentForm';
+import { Post } from '../containers/Post';
 
 it('renders without crashing', function () {
-  shallow(<CommentForm />);
+  shallow(<Post />);
 });
 
 it('matches snapshot', function () {
-  let wrapper = shallow(<CommentForm />);
+  let wrapper = shallow(<Post />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });
