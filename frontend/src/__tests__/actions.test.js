@@ -1,6 +1,4 @@
-import {
- addPost
-} from '../actions/actions';
+import * as actions from '../actions/actions';
 import {
   ADD_POST,
   DELETE_POST,
@@ -29,7 +27,7 @@ describe('actions', () => {
         body: "test body",
       }
     }
-    expect(addPost(TEST_POST)).toEqual(expectedAction)
+    expect(actions.addPost(TEST_POST)).toEqual(expectedAction)
   });
 
 });
