@@ -22,7 +22,9 @@ import {
  * - handles comment-deletion
  * - handles post-deletion
  */
-class Post extends Component {
+
+//NOTE: must export connected components for testing
+export class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {

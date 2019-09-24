@@ -10,11 +10,11 @@ import {
   VOTE
 } from './actions/actionTypes';
 
-const DEFAULT_STATE = {
+const INITIAL_STATE = {
   posts: {}
 }
 
-function rootReducer(state = DEFAULT_STATE, action) {
+function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
 
     // TODO: refactor this to loop through postList in helper function

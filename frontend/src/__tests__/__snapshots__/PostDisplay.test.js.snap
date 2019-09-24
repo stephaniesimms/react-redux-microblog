@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="PostDisplay"
+>
+  <h3 />
+  <p>
+    <em />
+  </p>
+  <p
+    className="mb-4"
+  />
+  <div
+    className="PostDisplay-right"
+  >
+    <i
+      className="fa fa-edit text-info"
+    />
+    <i
+      className="fa fa-times text-danger"
+    />
+    <div
+      className="PostDisplay-votes"
+    >
+      <b>
+        votes: 
+      </b>
+      <i
+        className="fas fa-grin-stars text-warning"
+        onClick={[Function]}
+      />
+      <i
+        className="fas fa-dizzy text-danger"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

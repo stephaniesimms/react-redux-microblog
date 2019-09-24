@@ -14,6 +14,13 @@ import {
 const BASE_URL = process.env.PUBLIC_URL || 'http://localhost:5000';
 const API_URL = `${BASE_URL}/api/posts`;
 
+export function showErr(msg) {
+  return { 
+    type: SHOW_ERROR, 
+    msg 
+  };
+}
+
 export function getPostsFromAPI() {
   return async function (dispatch) {
     const res = await axios.get(API_URL);
@@ -21,8 +28,11 @@ export function getPostsFromAPI() {
   };
 }
 
-function gotPosts(posts) {
-  return { type: LOAD_POSTS, posts };
+export function gotPosts(posts) {
+  return { 
+    type: LOAD_POSTS, 
+    posts 
+  };
 }
 
 /** Send POST object containing title, description, body from PostForm to backend
@@ -34,7 +44,7 @@ export function sendPostToAPI(post) {
   };
 }
 
-function addPost(post) {
+export function addPost(post) {
   return {
     type: ADD_POST,
     post
@@ -55,7 +65,7 @@ export function getPostFromAPI(id) {
   };
 }
 
-function getPost(post) {
+export function getPost(post) {
   return {
     type: GET_POST,
     post
@@ -69,7 +79,7 @@ export function sendDeleteToAPI(id) {
   };
 }
 
-function deletePost(id) {
+export function deletePost(id) {
   return {
     type: DELETE_POST,
     id
@@ -83,7 +93,7 @@ export function sendUpdateToAPI(post, id) {
   };
 }
 
-function updatePost(post, id) {
+export function updatePost(post, id) {
   return {
     type: UPDATE_POST,
     post,
@@ -98,7 +108,7 @@ export function sendCommentToAPI(postId, comment) {
   };
 }
 
-function addComment(postId, comment) {
+export function addComment(postId, comment) {
   return {
     type: ADD_COMMENT,
     postId,
@@ -113,7 +123,7 @@ export function deleteCommentFromAPI(postId, commentId) {
   };
 }
 
-function deleteComment(postId, commentId) {
+export function deleteComment(postId, commentId) {
   return {
     type: DELETE_COMMENT,
     postId,
@@ -128,14 +138,10 @@ export function sendVoteToAPI(id, direction) {
   };
 }
 
-function vote(postId, votes) {
+export function vote(postId, votes) {
   return {
     type: VOTE,
     postId: postId,
     votes: votes,
   };
-}
-
-function showErr(msg) {
-  return { type: SHOW_ERROR, msg };
 }

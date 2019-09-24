@@ -5,7 +5,8 @@ import {
   sendPostToAPI,
 } from '../actions/actions';
 
-class NewPost extends Component {
+//NOTE: must export connected components for testing
+export class NewPost extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);

@@ -11,7 +11,9 @@ import {
 /** Show list of blog titles, ordered by popularity.
  *  Allow up- and down-voting in the main list & for individual posts
  */
-class TitleList extends Component {
+
+ //NOTE: must export connected components for testing
+export class TitleList extends Component {
 
   async componentDidMount() {
     await this.props.getPostsFromAPI();
