@@ -4,6 +4,7 @@ import PostForm from '../components/PostForm';
 import PostDisplay from '../components/PostDisplay';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import NotFound from '../components/NotFound';
 import {
   sendDeleteToAPI,
   sendUpdateToAPI,
@@ -90,19 +91,21 @@ export class Post extends Component {
 
   /** Render:
    *
-   * - if not post yet, show a loading message
+   * - if backend does not find post, display 404 not found msg
+   * - if no post yet, show a loading message
    * - if editing, show the edit form & comments
-   * - if not, show the post & comments
+   * - if not editing, show the post & comments
    */
+
   render() {
     if (this.props.error) {
-      return <p>Cannot find post</p>;
+      return <NotFound />;
     }
 
     const post = this.props.post;
 
     if (!post) {
-      return 'Loading...';
+      return <b>'Loading...'</b>;
     }
 
     return (
