@@ -13,6 +13,7 @@ class NotFound extends Component {
         <h3 className='not-found-message'>
           Oops, we didn't find what you were looking for...
         </h3>
+        <i className='fas fa-skull-crossbones'></i>
       </div>
     );
   }

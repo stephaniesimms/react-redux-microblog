@@ -29,7 +29,7 @@ class PostDisplay extends Component {
       <div className='PostDisplay'>
         <h3>{post.title}</h3>
         <p><em>{post.description}</em></p>
-        <p className="mb-4">{post.body}</p>
+        <p className='mb-4'>{post.body}</p>
 
         <div className='PostDisplay-right'>
           <i className='fa fa-edit text-info'
@@ -38,12 +38,12 @@ class PostDisplay extends Component {
           <i className='fa fa-times text-danger'
             onClick={deletePost} />
 
-          <div className="PostDisplay-votes">
+          <div className='PostDisplay-votes'>
             <b>votes: {post.votes}</b>
 
-            <i className="fas fa-grin-stars text-warning"
+            <i className='fas fa-grin-stars text-warning'
               onClick={this.doVoteUp} />
-            <i className="fas fa-dizzy text-danger"
+            <i className='fas fa-dizzy text-danger'
               onClick={this.doVoteDown} />
           </div>
         </div>
