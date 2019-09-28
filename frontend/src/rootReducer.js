@@ -17,14 +17,10 @@ const INITIAL_STATE = {
 function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
 
-    // TODO: refactor this to loop through postList in helper function
     case LOAD_POSTS: {
       const postList = action.posts;
-      
-      const posts = {};
-      for (let post of postList) {
-        posts[post.id] = post;
-      }
+   
+      const posts = postList.reduce((acc, post) => ({ ...acc, [post.id]: post }), {});
       return { ...state, posts };
     }
 
