@@ -3,6 +3,7 @@ import {
   DELETE_POST,
   UPDATE_POST,
   GET_POST,
+  SHOW_ERROR,
   LOAD_POSTS,
   ADD_COMMENT,
   DELETE_COMMENT,
@@ -424,6 +425,32 @@ describe('rootReducer VOTE', () => {
           comments: []
         }
       }
+    });
+  });
+});
+
+describe('rootReducer SHOW_ERROR', () => {
+  beforeEach(() => {
+    action = {
+      type: SHOW_ERROR,
+      msg: 'Cannot find post'
+    }
+    state = {
+      posts: {}
+    }
+  });
+
+  it('should handle the error msg if post not found from the backend', () => {
+    expect(rootReducer(state, action)).toEqual({
+      error: 'Cannot find post',
+      posts: {}
+    });
+  });
+
+  it('should be a pure function', () => {
+    rootReducer(state, action);
+    expect(state).toEqual({
+      posts: {}
     });
   });
 });
