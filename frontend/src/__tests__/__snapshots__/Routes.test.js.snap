@@ -17,8 +17,8 @@ exports[`matches snapshot 1`] = `
     path="/posts/:postId"
     render={[Function]}
   />
-  <Redirect
-    to="/"
+  <Route
+    render={[Function]}
   />
 </Switch>
 `;

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Card
+  bg="dark"
+  body={false}
+  className="NotFound-card text-center"
+  style={
+    Object {
+      "width": "30rem",
+    }
+  }
+  text="white"
+>
+  <CardBody>
+    <i
+      className="fas fa-skull-crossbones fa-7x"
+    />
+    <CardTitle
+      className="not-found-message pt-3"
+    >
+      Oops, we didn't find what you were looking for...
+    </CardTitle>
+  </CardBody>
+</Card>
+`;

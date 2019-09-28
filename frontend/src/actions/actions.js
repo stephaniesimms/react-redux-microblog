@@ -14,12 +14,6 @@ import {
 const BASE_URL = process.env.PUBLIC_URL || 'http://localhost:5000';
 const API_URL = `${BASE_URL}/api/posts`;
 
-export function showErr(msg) {
-  return { 
-    type: SHOW_ERROR, 
-    msg 
-  };
-}
 
 export function getPostsFromAPI() {
   return async function (dispatch) {
@@ -69,6 +63,13 @@ export function getPost(post) {
   return {
     type: GET_POST,
     post
+  };
+}
+
+export function showErr(msg) {
+  return {
+    type: SHOW_ERROR,
+    msg
   };
 }
 
