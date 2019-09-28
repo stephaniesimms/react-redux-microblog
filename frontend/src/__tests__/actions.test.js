@@ -8,6 +8,7 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   VOTE,
+  SHOW_ERROR
 } from '../actions/actionTypes';
 
 describe('post actions', () => {
@@ -65,7 +66,7 @@ describe('post actions', () => {
       body: 'test body',
       votes: 2,
       comments: []
-    }
+    };
 
     const expectedAction = {
       type: GET_POST,
@@ -79,6 +80,16 @@ describe('post actions', () => {
       }
     };
     expect(actions.getPost(TEST_POST)).toEqual(expectedAction)
+  });
+
+  it('should create an action to handle the error msg if post not found', () => {
+    const POST_ERR_MSG = 'Cannot find post';
+
+    const expectedAction = {
+      type: SHOW_ERROR,
+      msg: 'Cannot find post'
+    };
+    expect(actions.showErr(POST_ERR_MSG)).toEqual(expectedAction)
   });
 
   it('should create an action to load posts', () => {
